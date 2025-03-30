@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.publish-button-wrapper {
+  margin-left: auto;
+  order: 2;
+}
+
+.MuiAccordionSummary-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.MuiAccordionSummary-expandIconWrapper {
+  order: 3;
+}
