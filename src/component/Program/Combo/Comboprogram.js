@@ -160,12 +160,12 @@ const ComboProgram = () => {
             setProgramFee(data.programFees);
             setStartDate(data.startDate);
             setEndDate(data.endDate);
-            setTiming(data.programTiming); // Corrected key
+            setTiming(data.programTiming);
             setLanguage(data.selectLanguage);
             setYoutubeLink(data.youTubeLink);
             setQuto(data.Quto);
             setQuto1(data.Quto1);
-            setProgram1(data.selectProgram1); // Corrected assignment
+            setProgram1(data.selectProgram1);
             setProgramFee1(data.programFees1);
             setFaqList(data.faq || []); // Ensure FAQ is set properly
             setImage(data.Photo);
