@@ -134,9 +134,15 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
                 <div>
                     <label className="text-sm font-bold text-[#361A06] mb-2 block">Select Program Fee</label>
                     <select value={programFee} onChange={(e) => setProgramFee(e.target.value)} className="border p-3 w-full rounded-md">
-                        <option value="">Type Heading here...</option>
-                        <option value="100">$100</option>
-                        <option value="200">$200</option>
+                    <option value="">Type Heading here...</option>
+                        <option value="4500">₹4500 INR</option>
+                        <option value="5000">₹5000 INR</option>
+                        <option value="6000">₹6000 INR</option>
+                        <option value="7500">₹7500 INR</option>
+                        <option value="10000">₹10000 INR</option>
+                        <option value="12000">₹12000 INR</option>
+                        <option value="15000">₹15000 INR</option>
+                        <option value="20000">₹20000 INR</option>
                     </select>
                 </div>
                 <div>
@@ -149,10 +155,19 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
                 </div>
                 <div>
                     <label className="text-sm font-bold text-[#361A06] mb-2 block">Select Program Timing</label>
-                    <select value={timing} onChange={(e) => setTiming(e.target.value)} className="border p-3 w-full rounded-md">
+                    <select
+                        value={timing}
+                        onChange={(e) => setTiming(e.target.value)}
+                        className="border p-3 w-full rounded-md"
+                    >
                         <option value="">Type Heading here...</option>
-                        <option value="morning">Morning</option>
-                        <option value="evening">Evening</option>
+                        <option value="06:00 - 09:00 AM">06:00 - 09:00 AM</option>
+                        <option value="09:00 - 12:00 PM">09:00 - 12:00 PM</option>
+                        <option value="12:00 - 03:00 PM">12:00 - 03:00 PM</option>
+                        <option value="03:00 - 06:00 PM">03:00 - 06:00 PM</option>
+                        <option value="06:00 - 09:00 PM">06:00 - 09:00 PM</option>
+                        <option value="09:00 - 12:00 AM">09:00 - 12:00 AM</option>
+
                     </select>
                 </div>
                 <div>
@@ -160,7 +175,7 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
                     <select value={language} onChange={(e) => setLanguage(e.target.value)} className="border p-3 w-full rounded-md">
                         <option value="">Type Heading here...</option>
                         <option value="english">English</option>
-                        <option value="spanish">Spanish</option>
+                        <option value="Telgu">Telgu</option>
                     </select>
                 </div>
             </div>
