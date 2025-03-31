@@ -42,8 +42,8 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
             formData.append("Photo", image);
             formData.append("selectProgram", program);
             formData.append("programFees", programFee);
-            formData.append("startDate", startDate);
-            formData.append("endDate", endDate);
+            formData.append("startDate", new Date(startDate).toISOString().split('T')[0]);
+            formData.append("endDate", new Date(endDate).toISOString().split('T')[0]);
             formData.append("programTiming", timing);
             formData.append("selectLanguage", language);
             formData.append("youTubeLink", youtubeLink);
@@ -81,8 +81,9 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
             setImage(passedClassData.Photo || null);
             setProgram(passedClassData.selectProgram || "");
             setProgramFee(passedClassData.programFees || "");
-            setStartDate(passedClassData.startDate ? new Date(passedClassData.startDate).toISOString().split('T')[0] : "");
-            setEndDate(passedClassData.endDate ? new Date(passedClassData.endDate).toISOString().split('T')[0] : "");
+            setStartDate(passedClassData.startDate ? formatDate(passedClassData.startDate) : "");
+
+            setEndDate(passedClassData.endDate ? formatDate(passedClassData.endDate) : "");
             setTiming(passedClassData.programTraining || "");
             setLanguage(passedClassData.selectLanguage || "");
             setYoutubeLink(passedClassData.youTubeLink || "");
@@ -110,7 +111,11 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
         }
     };
 
-
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const options = { day: 'numeric', month: 'short', year: 'numeric' };
+        return date.toLocaleDateString('en-US', options);
+    };
     return (
         <div className="max-w-3xl ml-[90px] bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
             <h2 className="text-3xl font-bold text-[#361A06] mb-8">ADD New Class</h2>
@@ -136,11 +141,11 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
                 </div>
                 <div>
                     <label className="text-sm font-bold text-[#361A06] mb-2 block">Select Start Date</label>
-                    <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className="border p-3 w-full rounded-md" />
+                    <input type="date" value={startDate ? new Date(startDate).toISOString().split('T')[0] : ""} onChange={(e) => setStartDate(e.target.value)} />
                 </div>
                 <div>
                     <label className="text-sm font-bold text-[#361A06] mb-2 block">Select End Date</label>
-                    <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className="border p-3 w-full rounded-md" />
+                    <input type="date" value={endDate ? new Date(endDate).toISOString().split('T')[0] : ""} onChange={(e) => setEndDate(e.target.value)} />
                 </div>
                 <div>
                     <label className="text-sm font-bold text-[#361A06] mb-2 block">Select Program Timing</label>
