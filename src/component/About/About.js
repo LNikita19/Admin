@@ -40,7 +40,9 @@ const About = () => {
       formData.append("Description", description);
 
       images.forEach((image) => {
-        if (image instanceof File) formData.append("Photos", image); // Field name should match multer
+        if (image instanceof File) {
+          formData.append("Photos", image); // Append multiple files
+        }
       });
 
       let response;
@@ -50,7 +52,7 @@ const About = () => {
         });
       } else {
         response = await axios.post(`${API_BASE_URL}/createaboutData`, formData, {
-          headers: { "Content-Type": "multipart/form-data" },
+          headers: { "Content-Type": "multipart/form" },
         });
       }
 
