@@ -75,7 +75,7 @@ const About = () => {
 
       <div className="flex flex-row gap-4">
         <ImageUpload selectedImages={images} setImages={setImages} inputId="about-image-1" index={0} />
-        <ImageUpload selectedImages={images} setImages={setImages} inputId="about-image-2" index={1} />
+        {/* <ImageUpload selectedImages={images} setImages={setImages} inputId="about-image-2" index={1} /> */}
       </div>
 
       <div className="flex flex-col font-['Roboto']">
