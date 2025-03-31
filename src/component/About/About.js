@@ -59,7 +59,7 @@ const About = () => {
       if (response?.data?.status) {
         setAboutId(response.data.data._id);
         toast.success(aboutId ? "Updated Successfully" : "Created Successfully");
-        getAboutData(); // Refresh data after save
+        getAboutData();
       } else {
         toast.error("Failed to save data");
       }
