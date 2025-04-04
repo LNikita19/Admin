@@ -36,7 +36,7 @@ const Login = ({ setIsLoggedIn }) => {
     }
   };
   return (
-    <div className="flex flex-col bg-[#FFF9E1] justify-center items-center min-h-screen">
+    <div className="flex flex-col font-jakarta bg-[#FFF9E1] justify-center items-center min-h-screen">
       <div className="w-full max-w-lg p-8 border-2 border-[#4A301C] rounded-lg shadow-lg bg-white">
         <div className="flex flex-col items-center">
           <img className="w-1/2 mb-4" src="/logo1.png" />

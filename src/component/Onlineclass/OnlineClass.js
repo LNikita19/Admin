@@ -117,7 +117,7 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
         return date.toLocaleDateString('en-US', options);
     };
     return (
-        <div className="max-w-3xl ml-[90px] bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+        <div className="max-w-3xl font-jakarta ml-[90px] bg-white p-8 rounded-2xl shadow-lg border border-[#361A0633]">
             <h2 className="text-3xl font-bold text-[#361A06] mb-8">ADD New Class</h2>
             <label className="text-sm font-bold text-[#361A06] mb-2 block">Photo </label>
             <ImageUpload selectedImage={image} setImage={setImage} />
@@ -134,7 +134,7 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
                 <div>
                     <label className="text-sm font-bold text-[#361A06] mb-2 block">Select Program Fee</label>
                     <select value={programFee} onChange={(e) => setProgramFee(e.target.value)} className="border p-3 w-full rounded-md">
-                    <option value="">Type Heading here...</option>
+                        <option value="">Type Heading here...</option>
                         <option value="4500">₹4500 INR</option>
                         <option value="5000">₹5000 INR</option>
                         <option value="6000">₹6000 INR</option>

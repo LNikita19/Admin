@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 const Publish = ({ onCancel, onPublish }) => {
   return (
     <>
-      <div className="font-['Roboto'] 2xl:mt-[74px] lg:mt-[30px] ml-[178px] space-x-2">
+      <div className="font-jakarta 2xl:mt-[74px] lg:mt-[30px] ml-[178px] space-x-2">
         <Button
           onClick={onCancel}
           variant="outlined"

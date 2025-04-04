@@ -130,11 +130,11 @@ const Placeholder = () => {
       await handleSwitch(activeSlideId);
     }
   };
-  const onCancel = () => {};
+  const onCancel = () => { };
   return (
     <div className="flex flex-col">
       <div>
-        <p className="font-['Roboto'] lg:ml-[40px] 2xl:ml-[90px] mt-[18px] font-semibold text-2 xl font-['Roboto'] text-[#1A2338B2]">
+        <p className="font-jakarta lg:ml-[40px] 2xl:ml-[90px] mt-[18px] font-semibold text-2 xl font-jakarta text-[#1A2338B2]">
           Fee Placeholder
         </p>
       </div>
@@ -170,7 +170,7 @@ const Placeholder = () => {
 
             <AccordionDetails>
               <div className="flex flex-col">
-                <div className="flex space-x-4 font-['Roboto']">
+                <div className="flex space-x-4 font-jakarta">
                   <div className="flex flex-col 2xl:w-[460px] 2xl:h-[152px] lg:w-[400px] lg:h-[120px]">
                     <label className=" text-[#1A2338] text-opacity-60 text-sm font-semibold">
                       Description
@@ -210,7 +210,7 @@ const Placeholder = () => {
         </div>
       ))}
       <button
-        className=" font-['Roboto'] 2xl:ml-[800px]  lg:ml-[600px]  w-[134px] h-[50px]  border-2 border-gray-500 rounded-lg mt-[4px]"
+        className=" font-jakarta 2xl:ml-[800px]  lg:ml-[600px]  w-[134px] h-[50px]  border-2 border-gray-500 rounded-lg mt-[4px]"
         onClick={handleAddRow}
       >
         ADD ROW +

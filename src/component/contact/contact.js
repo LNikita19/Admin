@@ -99,12 +99,12 @@ const Contact = () => {
   };
 
   return (
-    <div className="bg-[#F1F5F9] bg-cover w-[88vw] h-[100vh]">
+    <div className="bg-[#F1F5F9] bg-cover font-jakarta w-[88vw] h-[100vh]">
       <div className="flex flex-col">
         <div className="flex flex-row">
           <h1
-            className="lg:ml-[40px] lg:mt-[24px] 2xl:ml-[90px] 2xl:mt-[48px] font-['Roboto'] text-[40px] font-semibold text-[#1A2338]"
-            // style={{ lineHeight: "78px" }}
+            className="lg:ml-[40px] lg:mt-[24px] 2xl:ml-[90px] 2xl:mt-[48px] font-jakarta text-[40px] font-semibold text-[#1A2338]"
+          // style={{ lineHeight: "78px" }}
           >
             Contact Us Page
           </h1>

@@ -70,7 +70,7 @@ const About = () => {
   };
 
   return (
-    <div className="2xl:ml-[90px] mt-[5rem] 2xl:w-[900px] h-auto lg:w-[700px] rounded-3xl bg-white shadow-lg border-2px border-[#361A0633] p-8">
+    <div className="2xl:ml-[90px] mt-[5rem] font-jakarta 2xl:w-[900px] h-auto lg:w-[700px] rounded-3xl bg-white shadow-lg border border-[#361A0633]  p-8">
       <h2 className="text-[#361A06] text-2xl font-bold mb-6 ml-[2rem]">About Studio</h2>
 
       <div className="flex flex-row gap-4">
@@ -78,8 +78,8 @@ const About = () => {
         {/* <ImageUpload selectedImages={images} setImages={setImages} inputId="about-image-2" index={1} /> */}
       </div>
 
-      <div className="flex flex-col font-['Roboto']">
-        <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#1A233899]">
+      <div className="flex flex-col font-jakarta">
+        <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#361A06]">
           Main Heading
         </label>
         <input
@@ -90,7 +90,7 @@ const About = () => {
           onChange={(e) => setHeading(e.target.value)}
         />
 
-        <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#1A233899]">
+        <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#361A06]">
           Description
         </label>
         <textarea

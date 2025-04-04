@@ -75,13 +75,13 @@ const Author = () => {
   };
 
   return (
-    <div className="2xl:ml-[90px] mt-[5rem] 2xl:w-[900px] lg:w-[700px] rounded-3xl bg-white shadow-lg border-2px border-[#361A0633] p-8">
+    <div className="2xl:ml-[90px] font-jakarta mt-[5rem] 2xl:w-[900px] lg:w-[700px] rounded-3xl bg-white shadow-lg border border-[#361A0633]  p-8">
       <h2 className="text-[#361A06] text-2xl font-bold mb-6 ml-[2rem]">Author</h2>
 
       <ImageUpload selectedImage={image} setImage={setImage} />
 
-      <div className="flex flex-col font-['Roboto']">
-        <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#1A233899]">Main Heading</label>
+      <div className="flex flex-col font-jakarta">
+        <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#361A06]">Main Heading</label>
         <input
           type="text"
           className="mt-[4px] text-[12px] ml-[30px] border border-[#0000003B] px-2 py-2 2xl:w-[540px] lg:w-[350px] rounded"
@@ -90,7 +90,7 @@ const Author = () => {
           onChange={(e) => setHeading(e.target.value)}
         />
 
-        <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#1A233899]">Description</label>
+        <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#361A06]">Description</label>
         <textarea
           className="ml-[30px] text-[12px] border border-[#0000003B] px-2 py-2 rounded 2xl:w-[540px] lg:w-[360px] h-auto"
           value={description}
@@ -99,7 +99,7 @@ const Author = () => {
         ></textarea>
 
         {/* Word Count Display */}
-        <p className="ml-[30px] text-[12px] text-[#1A233899]">
+        <p className="ml-[30px] text-[12px] text-[#361A06]">
           {remainingWords} / 100 Words Remaining
         </p>
 

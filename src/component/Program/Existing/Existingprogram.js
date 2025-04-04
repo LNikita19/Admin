@@ -144,7 +144,7 @@ const Existingprogram = () => {
     };
 
     return (
-        <div className="max-w-3xl ml-[90px] bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+        <div className="max-w-3xl font-jakarta ml-[90px] bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
             <h2 className="text-3xl font-bold text-[#361A06] mb-8">Existing Program</h2>
             <label className="text-sm font-bold text-[#361A06] mb-2 block">Photo </label>
             <ImageUpload selectedImage={image} setImage={setImage} />

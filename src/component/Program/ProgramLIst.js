@@ -78,7 +78,7 @@ const ProgramList = () => {
         ...existingPrograms.map(p => ({ ...p, type: 'existing' })) // ✅ Include existing programs
     ];
     return (
-        <div className="p-8">
+        <div className="p-8 font-jakarta">
             {/* Header */}
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-2xl font-bold text-[#361A06]">Programs</h1>
@@ -150,7 +150,7 @@ const ProgramList = () => {
                                         e.target.src = '/default-program.jpg';
                                     }}
                                 />
-                                <div className="absolute text-[12px] top-3 left-3 bg-[#FDF7C4] text-[#361A06] font-bold md:text-[24px] px-3 py-1 rounded-full">
+                                <div className="absolute text-[8px] top-3 left-3 bg-[#FDF7C4] text-[#361A06] font-bold md:text-[16px] px-3 py-1 rounded-full">
 
                                     {formatDate(program.startDate)} -  {formatDate(program.endDate)}
                                 </div>
@@ -176,7 +176,7 @@ const ProgramList = () => {
                                     {/* Action Buttons */}
                                     <div className="mt-4 space-y-2">
                                         <button
-                                            className="bg-white border w-full py-2 rounded-md text-[#361A06] hover:bg-gray-50 transition-colors"
+                                            className="bg-white border border-[#361A0633] shadow-2xl w-full py-2 rounded-md text-[#361A06] hover:bg-gray-50 transition-colors"
                                             onClick={() => navigate(
                                                 program.type === 'combo' ? `/ComboProgram/${program._id}` : `/Program/${program._id}`,
                                                 { state: { programData: program } } // Pass program data as state

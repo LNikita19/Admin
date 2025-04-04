@@ -62,7 +62,7 @@ const TestimonialImages = () => {
     };
 
     return (
-        <div className="p-8 bg-[#FFF9E1] min-h-screen">
+        <div className="p-8 bg-[#FFF9E1] font-jakarta min-h-screen">
             <div className="flex justify-between items-center mb-6">
                 <button
                     onClick={handleAddNewImage}

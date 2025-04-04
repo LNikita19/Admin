@@ -15,13 +15,13 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="bg-[#FCEC8C] bg-cover w-auto text-center text-[#361A06] min-h-screen font-['Roboto'] ">
+    <div className="bg-[#FCEC8C] font-jakarta font-bold bg-cover w-auto text-center text-[#361A06] min-h-screen  ">
       <div className="flex flex-row">
         <div>
-          <img src="/Logo.png" alt="logo" className=" mt-[31px]" />
+          <img src="/Logo.png" alt="logo" className=" mt-[31px] w-10/12" />
         </div>
       </div>
-      <ul className="flex flex-col">
+      <ul className="flex flex-col font-bold">
         {menuItems.map((item, index) => (
           <li key={index} className="flex flex-row items-center justify-center">
             <Link
@@ -31,7 +31,7 @@ const Navbar = () => {
                 }`}
             >
               <h1
-                className="flex items-center 2xl:text-lg !text-sm font-medium"
+                className="flex items-center text-[#361A06] 2xl:text-lg font-bold"
                 style={{ lineHeight: "15px" }}
               >
                 {item.name}

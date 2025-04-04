@@ -71,10 +71,10 @@ const Heading = () => {
 
   return (
     <>
-      <div className="2xl:ml-[90px] mt-[5rem] 2xl:w-[900px] h-auto lg:w-[700px] rounded-3xl bg-white shadow-lg border-2px border-[#361A0633] p-8">
-        <h2 className="text-[#361A06] text-2xl font-bold mb-6">Hero Section</h2>
-        <div className="flex flex-col font-['Roboto']">
-          <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#1A233899]">
+      <div className="2xl:ml-[90px] font-jakarta mt-[5rem] 2xl:w-[900px] h-auto lg:w-[700px] rounded-3xl bg-white  shadow-lg border border-[#361A0633] p-8">
+        <h2 className="text-[#361A06] text-2xl font-extrabold  ml-6 mb-4">Hero Section</h2>
+        <div className="flex flex-col font-jakarta">
+          <label className="ml-[30px] mt-[27px] text-[14px]  text-[#361A06] font-bold">
             Small Heading
           </label>
           <input
@@ -86,7 +86,7 @@ const Heading = () => {
             disabled={!isEditing}
           />
 
-          <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#1A233899]">
+          <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#361A06]">
             Main Heading
           </label>
           <input
@@ -98,7 +98,7 @@ const Heading = () => {
             disabled={!isEditing}
           />
 
-          <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#1A233899]">
+          <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#361A06]">
             Description
           </label>
           <textarea
@@ -109,12 +109,12 @@ const Heading = () => {
             disabled={!isEditing}
           ></textarea>
 
-          <p className="ml-[30px] text-[12px] text-[#1A233899]">
+          <p className="ml-[30px] text-[12px] text-[#361A06]">
             100/100 Words Remaining
           </p>
 
           {/* Buttons */}
-          <div className="font-['Roboto'] mb-[32px] ml-[2rem]  2xl:mt-[30px] lg:mt-[13px] space-x-4">
+          <div className="font-jakarta mb-[32px] ml-[2rem]  2xl:mt-[30px] lg:mt-[13px] space-x-4">
             <Button
               variant="outlined"
               onClick={() => setIsEditing(true)}

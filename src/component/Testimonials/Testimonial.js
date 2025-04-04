@@ -78,7 +78,7 @@ const Testimonials = () => {
 
     return (
         <>
-            <div className="p-8 bg-[#FFF9E1] min-h-screen">
+            <div className="p-8 bg-[#FFF9E1] font-jakarta min-h-screen">
                 {!isAddingNew ? (
                     <>
                         <div className="flex justify-between items-center mb-6">
@@ -122,13 +122,13 @@ const Testimonials = () => {
                 ) : (
                     <>
                         <h2 className="text-[#361A06] text-2xl ml-[6rem] font-bold mt-8">{testimonialId ? "Edit Comment" : "New Comment"}</h2>
-                        <div className="2xl:ml-[90px] mt-[5rem] 2xl:w-[900px] h-auto lg:w-[700px] rounded-3xl bg-[#fff] shadow-lg border-2px border-[#361A0633] p-8">
+                        <div className="2xl:ml-[90px] mt-[5rem] 2xl:w-[900px] h-auto lg:w-[700px] rounded-3xl bg-[#fff] shadow-lg border border-[#361A0633]  p-8">
                             <h2 className="text-[#361A06] text-2xl font-bold mb-6 ml-[2rem]">New Comment</h2>
 
                             <ImageUpload selectedImage={image} setImage={setImage} />
 
-                            <div className="flex flex-col font-['Roboto']">
-                                <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#1A233899]">Name</label>
+                            <div className="flex flex-col font-jakarta">
+                                <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#361A06]">Name</label>
                                 <input
                                     type="text"
                                     className="mt-[4px] text-[12px] ml-[30px] border border-[#0000003B] px-2 py-2 2xl:w-[540px] lg:w-[350px] rounded"
@@ -137,7 +137,7 @@ const Testimonials = () => {
                                     onChange={(e) => setName(e.target.value)}
                                 />
 
-                                <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#1A233899]">Profession</label>
+                                <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#361A06]">Profession</label>
                                 <input
                                     type="text"
                                     className="mt-[4px] text-[12px] ml-[30px] border border-[#0000003B] px-2 py-2 2xl:w-[540px] lg:w-[350px] rounded"
@@ -146,14 +146,14 @@ const Testimonials = () => {
                                     onChange={(e) => setProfession(e.target.value)}
                                 />
 
-                                <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#1A233899]">Comment</label>
+                                <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#361A06]">Comment</label>
                                 <textarea
                                     className="ml-[30px] text-[12px] border border-[#0000003B] px-2 py-2 rounded 2xl:w-[540px] lg:w-[360px] h-auto"
                                     value={comment}
                                     placeholder="Type Comment ...."
                                     onChange={(e) => setComment(e.target.value)}
                                 ></textarea>
-                                <p className="ml-[30px] text-[12px] text-[#1A233899]">100/100 Words Remaining</p>
+                                <p className="ml-[30px] text-[12px] text-[#361A06]">100/100 Words Remaining</p>
 
                                 <SaveButton onSave={onSaveChanges} />
                             </div>

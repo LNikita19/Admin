@@ -80,7 +80,7 @@ const Footer = () => {
     }, []);
 
     return (
-        <div className="2xl:ml-[90px] mt-[5rem] 2xl:w-[900px] h-auto lg:w-[700px] rounded-3xl bg-white shadow-lg border-2px border-[#361A0633] p-8">
+        <div className="2xl:ml-[90px] font-jakarta mt-[5rem] 2xl:w-[900px] h-auto lg:w-[700px] rounded-3xl bg-white shadow-lg border border-[#361A0633]  p-8">
             <h2 className="text-[#361A06] text-2xl font-bold mb-6 ml-[2rem]">Footer Section</h2>
 
             <ImageUpload
@@ -88,9 +88,9 @@ const Footer = () => {
                 setImage={(img) => setFormData({ ...formData, photo: img })}
             />
 
-            <div className="flex flex-col space-y-6 font-['Roboto']">
+            <div className="flex flex-col space-y-6 font-jakarta">
                 <div className="flex flex-col">
-                    <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#1A233899]">Location</label>
+                    <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#361A06]">Location</label>
                     <input
                         type="text"
                         className="mt-[4px] text-[12px] ml-[30px] border border-[#0000003B] px-2 py-2 2xl:w-[540px] lg:w-[350px] rounded"
@@ -99,7 +99,7 @@ const Footer = () => {
                         onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                     />
 
-                    <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#1A233899]">Contact Number</label>
+                    <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#361A06]">Contact Number</label>
                     <input
                         type="text"
                         className="ml-[30px] text-[12px] border border-[#0000003B] px-2 py-2 rounded 2xl:w-[540px] lg:w-[360px] h-auto"
@@ -112,7 +112,7 @@ const Footer = () => {
                 <div className="flex flex-col space-y-4">
                     <div className="flex flex-row space-x-3">
                         <div className="flex flex-col">
-                            <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#1A233899]">Instagram Link</label>
+                            <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#361A06]">Instagram Link</label>
                             <input
                                 type="text"
                                 className="mt-[4px] text-[12px] ml-[30px] border border-[#0000003B] px-2 py-2 w-[350px] rounded"
@@ -122,7 +122,7 @@ const Footer = () => {
                             />
                         </div>
                         <div className="flex flex-col">
-                            <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#1A233899]">Facebook Link</label>
+                            <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#361A06]">Facebook Link</label>
                             <input
                                 type="text"
                                 className="mt-[4px] text-[12px] ml-[30px] border border-[#0000003B] px-2 py-2 w-[350px] rounded"
@@ -134,7 +134,7 @@ const Footer = () => {
                     </div>
                     <div className="flex flex-row space-x-3">
                         <div className="flex flex-col">
-                            <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#1A233899]">YouTube Link</label>
+                            <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#361A06]">YouTube Link</label>
                             <input
                                 type="text"
                                 className="mt-[4px] text-[12px] ml-[30px] border border-[#0000003B] px-2 py-2 w-[350px] rounded"
@@ -144,7 +144,7 @@ const Footer = () => {
                             />
                         </div>
                         <div className="flex flex-col">
-                            <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#1A233899]">X Link</label>
+                            <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#361A06]">X Link</label>
                             <input
                                 type="text"
                                 className="mt-[4px] text-[12px] ml-[30px] border border-[#0000003B] px-2 py-2 w-[350px] rounded"
