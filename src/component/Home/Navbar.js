@@ -21,7 +21,7 @@ const Navbar = () => {
           <img src="/Logo.png" alt="logo" className=" mt-[31px] w-10/12" />
         </div>
       </div>
-      <ul className="flex flex-col font-bold">
+      <ul className="flex flex-col font-bold ml-8">
         {menuItems.map((item, index) => (
           <li key={index} className="flex flex-row items-center justify-center">
             <Link

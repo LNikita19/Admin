@@ -83,7 +83,7 @@ const ProgramList = () => {
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-2xl font-bold text-[#361A06]">Programs</h1>
                 <button
-                    className="bg-[#361A06] text-white px-4 py-2 rounded-md hover:bg-[#2a1404] transition-colors"
+                    className="bg-[#361A06] text-white px-4 py-2 rounded-lg hover:bg-[#2a1404] transition-colors"
                     onClick={() => setShowPopup(true)}
                 >
                     ADD NEW PROGRAM
@@ -93,30 +93,30 @@ const ProgramList = () => {
             {/* Program Type Selection Popup */}
             {showPopup && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-                    <div className="bg-white p-6 rounded-lg shadow-md text-center w-80">
+                    <div className="bg-white p-6 rounded-lg shadow-md text-center w-1/4">
                         <h2 className="text-xl font-bold mb-4 text-[#361A06]">Select Program Type</h2>
                         <div className="space-y-3">
                             <button
-                                className="block w-full bg-[#FEF8E7] text-[#361A06] border p-3 rounded-md font-semibold hover:bg-[#FEEBC8] transition-colors"
+                                className="block w-full bg-[#FEF8E7] text-[#361A06] border border-[#FD8531] p-3 rounded-lg font-semibold hover:bg-[#FEEBC8] transition-colors"
                                 onClick={() => handleProgramSelect('regular')}
                             >
                                 New Program
                             </button>
                             <button
-                                className="block w-full bg-[#361A06] text-white p-3 rounded-md font-semibold hover:bg-[#2a1404] transition-colors"
+                                className="block w-full bg-[#361A06] text-white p-3 rounded-lg font-semibold hover:bg-[#2a1404] transition-colors"
                                 onClick={() => handleProgramSelect('combo')}
                             >
                                 Add Combo Program
                             </button>
                             <button
-                                className="block w-full bg-[#FDF7C4] text-[#361A06] p-3 rounded-md font-semibold hover:bg-[#FCE7A6] transition-colors"
+                                className="block w-full bg-[#FD8531] text-[#361A06] p-3 rounded-lg font-semibold hover:bg-[#FCE7A6] transition-colors"
                                 onClick={() => navigate('/Existingprogram')}
                             >
                                 Existing Program
                             </button>
                         </div>
                         <button
-                            className="mt-4 text-gray-500 hover:text-gray-700"
+                            className=" mt-4 block w-full bg-[#FEF8E7] text-[#361A06] border border-[#FD8531] p-3 rounded-lg font-semibold hover:bg-[#FEEBC8] transition-colors"
                             onClick={() => setShowPopup(false)}
                         >
                             Cancel
@@ -176,7 +176,7 @@ const ProgramList = () => {
                                     {/* Action Buttons */}
                                     <div className="mt-4 space-y-2">
                                         <button
-                                            className="bg-white border border-[#361A0633] shadow-2xl w-full py-2 rounded-md text-[#361A06] hover:bg-gray-50 transition-colors"
+                                            className="bg-white border border-[#361A0633] shadow-2xl w-full py-2 rounded-lg text-[#361A06] hover:bg-gray-50 transition-colors"
                                             onClick={() => navigate(
                                                 program.type === 'combo' ? `/ComboProgram/${program._id}` : `/Program/${program._id}`,
                                                 { state: { programData: program } } // Pass program data as state
@@ -185,7 +185,7 @@ const ProgramList = () => {
                                             Edit Program
                                         </button>
                                         <button
-                                            className="bg-[#361A06] text-white w-full py-2 rounded-md hover:bg-[#2a1404] transition-colors"
+                                            className="bg-[#361A06] text-white w-full py-2 rounded-lg hover:bg-[#2a1404] transition-colors"
                                             onClick={() => handleDelete(program._id, program.type === 'combo')}
                                         >
                                             Delete Program
@@ -198,7 +198,7 @@ const ProgramList = () => {
                         <div className="col-span-full text-center py-10">
                             <p className="text-gray-500 mb-4">No programs available.</p>
                             <button
-                                className="bg-[#361A06] text-white px-4 py-2 rounded-md hover:bg-[#2a1404] transition-colors"
+                                className="bg-[#361A06] text-white px-4 py-2 rounded-lg hover:bg-[#2a1404] transition-colors"
                                 onClick={() => setShowPopup(true)}
                             >
                                 Create Your First Program
