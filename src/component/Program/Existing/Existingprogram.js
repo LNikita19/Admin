@@ -208,8 +208,8 @@ const Existingprogram = () => {
                     <label className="text-sm font-bold text-[#361A06] mb-2 block">Select Language</label>
                     <select value={language} onChange={(e) => setLanguage(e.target.value)} className="border p-3 w-full rounded-md">
                         <option value="">Type Heading here...</option>
-                        <option value="english">English</option>
-                        <option value="Telgu">Telgu</option>
+                        <option value="English">English</option>
+                        <option value="Telugu">Telugu</option>
                     </select>
                 </div>
             </div>

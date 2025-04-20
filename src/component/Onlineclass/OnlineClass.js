@@ -124,17 +124,17 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
 
             <div className="grid grid-cols-2 gap-6 mt-8">
                 <div>
-                    <label className="text-sm font-bold text-[#361A06] mb-2">Select Program</label>
-                    <select value={program} onChange={(e) => setProgram(e.target.value)} className="border p-3 w-full rounded-md">
-                        <option value="">Type Heading here...</option>
+                    <label className="text-sm font-bold text-[#361A06] mb-2"> Program Name</label>
+                    <input type="text" value={program} onChange={(e) => setProgram(e.target.value)} className="border p-3 w-full rounded-md">
+                        {/* <option value="">Type Heading here...</option>
                         <option value="program1">Program 1</option>
-                        <option value="program2">Program 2</option>
-                    </select>
+                        <option value="program2">Program 2</option> */}
+                    </input>
                 </div>
                 <div>
-                    <label className="text-sm font-bold text-[#361A06] mb-2 block">Select Program Fee</label>
-                    <select value={programFee} onChange={(e) => setProgramFee(e.target.value)} className="border p-3 w-full rounded-md">
-                        <option value="">Type Heading here...</option>
+                    <label className="text-sm font-bold text-[#361A06] mb-2 block"> Program Fee</label>
+                    <input type="text" value={programFee} onChange={(e) => setProgramFee(e.target.value)} className="border p-3 w-full rounded-md">
+                        {/* <option value="">Type Heading here...</option>
                         <option value="4500">₹4500 INR</option>
                         <option value="5000">₹5000 INR</option>
                         <option value="6000">₹6000 INR</option>
@@ -142,8 +142,8 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
                         <option value="10000">₹10000 INR</option>
                         <option value="12000">₹12000 INR</option>
                         <option value="15000">₹15000 INR</option>
-                        <option value="20000">₹20000 INR</option>
-                    </select>
+                        <option value="20000">₹20000 INR</option> */}
+                    </input>
                 </div>
                 <div>
                     <label className="text-sm font-bold text-[#361A06] mb-2 block">Select Start Date</label>
@@ -154,28 +154,28 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
                     <input type="date" value={endDate ? new Date(endDate).toISOString().split('T')[0] : ""} onChange={(e) => setEndDate(e.target.value)} />
                 </div>
                 <div>
-                    <label className="text-sm font-bold text-[#361A06] mb-2 block">Select Program Timing</label>
-                    <select
+                    <label className="text-sm font-bold text-[#361A06] mb-2 block"> Program Timing</label>
+                    <input type="text"
                         value={timing}
                         onChange={(e) => setTiming(e.target.value)}
                         className="border p-3 w-full rounded-md"
                     >
-                        <option value="">Type Heading here...</option>
+                        {/* <option value="">Type Heading here...</option>
                         <option value="06:00 - 09:00 AM">06:00 - 09:00 AM</option>
                         <option value="09:00 - 12:00 PM">09:00 - 12:00 PM</option>
                         <option value="12:00 - 03:00 PM">12:00 - 03:00 PM</option>
                         <option value="03:00 - 06:00 PM">03:00 - 06:00 PM</option>
                         <option value="06:00 - 09:00 PM">06:00 - 09:00 PM</option>
-                        <option value="09:00 - 12:00 AM">09:00 - 12:00 AM</option>
+                        <option value="09:00 - 12:00 AM">09:00 - 12:00 AM</option> */}
 
-                    </select>
+                    </input>
                 </div>
                 <div>
                     <label className="text-sm font-bold text-[#361A06] mb-2 block">Select Language</label>
                     <select value={language} onChange={(e) => setLanguage(e.target.value)} className="border p-3 w-full rounded-md">
                         <option value="">Type Heading here...</option>
-                        <option value="english">English</option>
-                        <option value="Telgu">Telgu</option>
+                        <option value="English">English</option>
+                        <option value="Telugu">Telugu</option>
                     </select>
                 </div>
             </div>

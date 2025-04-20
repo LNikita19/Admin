@@ -141,10 +141,17 @@ const Program = () => {
                 </div>
                 <div>
                     <label className="text-sm font-bold text-[#361A06] mb-2 block">Add Program Fee</label>
-                    <input type="text" value={programFee} onChange={(e) => setProgramFee(e.target.value)} className="border p-3 w-full rounded-md">
-
-                    </input>
+                    <div className="relative">
+                        <input
+                            type="text"
+                            value={programFee}
+                            onChange={(e) => setProgramFee(e.target.value)}
+                            className="border p-3 w-full pr-12 rounded-md"
+                        />
+                        <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">INR</span>
+                    </div>
                 </div>
+
                 <div>
                     <label className="text-sm  text-[#361A06] mb-2 block">Select Start Date</label>
                     <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className="border p-3 w-full rounded-md" />
@@ -170,8 +177,8 @@ const Program = () => {
                     <label className="text-sm font-bold text-[#361A06] mb-2 block">Select Language</label>
                     <select value={language} onChange={(e) => setLanguage(e.target.value)} className="border p-3 w-full rounded-md">
                         <option value="">Type Heading here...</option>
-                        <option value="english">English</option>
-                        <option value="Telgu">Telgu</option>
+                        <option value="English">English</option>
+                        <option value="Telugu">Telugu</option>
                     </select>
                 </div>
             </div>
@@ -205,7 +212,7 @@ const Program = () => {
                             placeholder="Enter answer"
                             value={faq.answer}
                             onChange={(e) => handleFaqChange(index, "answer", e.target.value)}
-                            className="border p-3 w-full rounded-md"
+                            className="border px-3  py-12 w-full rounded-md"
                             rows="2"
                         ></textarea>
                     </div>

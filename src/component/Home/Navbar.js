@@ -18,7 +18,7 @@ const Navbar = () => {
     <div className="bg-[#FCEC8C] font-jakarta font-bold bg-cover w-auto text-center text-[#361A06] min-h-screen  ">
       <div className="flex flex-row">
         <div>
-          <img src="/Logo.png" alt="logo" className=" mt-[31px] w-10/12" />
+          <img src="/Logo.png" alt="logo" className="  mt-[31px] w-10/12 ml-6" />
         </div>
       </div>
       <ul className="flex flex-col font-bold ml-8">
