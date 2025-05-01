@@ -91,14 +91,14 @@ const About = () => {
         />
 
         <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#361A06]">
-          Description
+          Description (Each sentence after a period will appear on a new line)
         </label>
         <textarea
-          className="ml-[30px] text-[12px] border border-[#0000003B] px-2 py-2 rounded 2xl:w-[540px] lg:w-[360px] h-auto"
+          className="ml-[30px] text-[12px] border border-[#0000003B] px-2 py-2 rounded 2xl:w-[540px] lg:w-[360px] min-h-[120px] whitespace-pre-wrap"
           value={description}
-          placeholder="Type Description ...."
+          placeholder="Type description here. Each sentence should end with a period. The next sentence will automatically start on a new line..."
           onChange={(e) => setDescription(e.target.value)}
-        ></textarea>
+        />
 
         <SaveButton onSave={onSaveChanges} />
       </div>
