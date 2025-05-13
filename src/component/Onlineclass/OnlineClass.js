@@ -1,6 +1,6 @@
 // OnlineClass.js
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import ImageUpload from "./imageUpload";
 import SaveButton from "../Buttons/saveButton";
@@ -24,8 +24,29 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
     const [language, setLanguage] = useState("");
     const [youtubeLink, setYoutubeLink] = useState("");
     const [faqList, setFaqList] = useState([{ question: "", answer: "" }]);
+    const [startTime, setStartTime] = useState('');
+    const [endTime, setEndTime] = useState('');
+    const dropdownRef = useRef(null);
 
+    const formatAMPM = (timeStr) => {
+        if (!timeStr) return '';
+        const [hour, minute] = timeStr.split(':');
+        const h = parseInt(hour);
+        const ampm = h >= 12 ? 'PM' : 'AM';
+        const h12 = h % 12 || 12;
+        return `${h12.toString().padStart(2, '0')}:${minute} ${ampm}`;
+    };
 
+    useEffect(() => {
+        if (startTime && endTime) {
+            const formatted = `${formatAMPM(startTime)} - ${formatAMPM(endTime)}`;
+            setTiming(formatted);
+        }
+    }, [startTime, endTime]);
+
+    const toggleDropdown = () => {
+        dropdownRef.current.classList.toggle('hidden');
+    };
     const handleFaqChange = (index, field, value) => {
         const updatedFaqs = [...faqList];
         updatedFaqs[index][field] = value;
@@ -155,20 +176,44 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
                 </div>
                 <div>
                     <label className="text-sm font-bold text-[#361A06] mb-2 block"> Program Timing</label>
-                    <input type="text"
+                    <input
+                        type="text"
                         value={timing}
-                        onChange={(e) => setTiming(e.target.value)}
-                        className="border p-3 w-full rounded-md"
-                    >
-                        {/* <option value="">Type Heading here...</option>
-                        <option value="06:00 - 09:00 AM">06:00 - 09:00 AM</option>
-                        <option value="09:00 - 12:00 PM">09:00 - 12:00 PM</option>
-                        <option value="12:00 - 03:00 PM">12:00 - 03:00 PM</option>
-                        <option value="03:00 - 06:00 PM">03:00 - 06:00 PM</option>
-                        <option value="06:00 - 09:00 PM">06:00 - 09:00 PM</option>
-                        <option value="09:00 - 12:00 AM">09:00 - 12:00 AM</option> */}
+                        className="border p-3 w-full rounded-md mb-2 bg-gray-100 cursor-pointer"
+                        onClick={toggleDropdown}
+                        readOnly
+                        placeholder="Click to select timing"
+                    />
 
-                    </input>
+                    {/* Dropdown Timepicker */}
+                    <div ref={dropdownRef} className="z-10 hidden bg-white rounded-lg shadow-sm w-full p-4 border">
+                        <div className="grid grid-cols-2 gap-4 mb-2">
+                            <div>
+                                <label className="block mb-2 text-sm font-medium text-gray-900">Start time:</label>
+                                <input
+                                    type="time"
+                                    value={startTime}
+                                    onChange={(e) => setStartTime(e.target.value)}
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                                    min="06:00"
+                                    max="22:00"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label className="block mb-2 text-sm font-medium text-gray-900">End time:</label>
+                                <input
+                                    type="time"
+                                    value={endTime}
+                                    onChange={(e) => setEndTime(e.target.value)}
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                                    min="06:00"
+                                    max="23:59"
+                                    required
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <label className="text-sm font-bold text-[#361A06] mb-2 block">Select Language</label>
