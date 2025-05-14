@@ -152,30 +152,43 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
                         <option value="program2">Program 2</option> */}
                     </input>
                 </div>
-                <div>
+                {/* <div>
                     <label className="text-sm font-bold text-[#361A06] mb-2 block"> Program Fee</label>
                     <input type="text" value={programFee} onChange={(e) => setProgramFee(e.target.value)} className="border p-3 w-full rounded-md">
-                        {/* <option value="">Type Heading here...</option>
-                        <option value="4500">₹4500 INR</option>
-                        <option value="5000">₹5000 INR</option>
-                        <option value="6000">₹6000 INR</option>
-                        <option value="7500">₹7500 INR</option>
-                        <option value="10000">₹10000 INR</option>
-                        <option value="12000">₹12000 INR</option>
-                        <option value="15000">₹15000 INR</option>
-                        <option value="20000">₹20000 INR</option> */}
+                      
                     </input>
-                </div>
+                </div> */}
+
                 <div>
+                    <label className="text-sm font-bold text-[#361A06] mb-2 block"> Program Fee</label>
+                    <div className="relative">
+                        <input
+                            type="text"
+                            value={programFee}
+                            onChange={(e) => setProgramFee(e.target.value)}
+                            className="border p-3 w-full pr-12 rounded-md"
+                        />
+                        <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">INR</span>
+                    </div>
+                </div>
+                {/* <div>
                     <label className="text-sm font-bold text-[#361A06] mb-2 block">Select Start Date</label>
                     <input type="date" value={startDate ? new Date(startDate).toISOString().split('T')[0] : ""} onChange={(e) => setStartDate(e.target.value)} />
                 </div>
                 <div>
                     <label className="text-sm font-bold text-[#361A06] mb-2 block">Select End Date</label>
                     <input type="date" value={endDate ? new Date(endDate).toISOString().split('T')[0] : ""} onChange={(e) => setEndDate(e.target.value)} />
+                </div> */}
+                <div>
+                    <label className="text-sm  text-[#361A06] mb-2 block">Select Start Date</label>
+                    <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className="border p-3 w-full rounded-md" />
                 </div>
                 <div>
-                    <label className="text-sm font-bold text-[#361A06] mb-2 block"> Program Timing</label>
+                    <label className="text-sm  text-[#361A06] mb-2 block">Select End Date</label>
+                    <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className="border p-3 w-full rounded-md" />
+                </div>
+                <div>
+                    <label className="text-sm font-bold text-[#361A06] mb-2 block"> Select Program Timing</label>
                     <input
                         type="text"
                         value={timing}

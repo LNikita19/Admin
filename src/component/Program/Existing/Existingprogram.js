@@ -1,5 +1,5 @@
 // Program.js
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ImageUpload from "./imageUpload";
 import axios from "axios";
@@ -22,7 +22,29 @@ const Existingprogram = () => {
     const [youtubeLink, setYoutubeLink] = useState("");
     const [faqList, setFaqList] = useState([{ question: "", answer: "" }]);
     const [allPrograms, setAllPrograms] = useState([]);
+    const [startTime, setStartTime] = useState('');
+    const [endTime, setEndTime] = useState('');
+    const dropdownRef = useRef(null);
 
+    const formatAMPM = (timeStr) => {
+        if (!timeStr) return '';
+        const [hour, minute] = timeStr.split(':');
+        const h = parseInt(hour);
+        const ampm = h >= 12 ? 'PM' : 'AM';
+        const h12 = h % 12 || 12;
+        return `${h12.toString().padStart(2, '0')}:${minute} ${ampm}`;
+    };
+
+    useEffect(() => {
+        if (startTime && endTime) {
+            const formatted = `${formatAMPM(startTime)} - ${formatAMPM(endTime)}`;
+            setTiming(formatted);
+        }
+    }, [startTime, endTime]);
+
+    const toggleDropdown = () => {
+        dropdownRef.current.classList.toggle('hidden');
+    };
     const handleFaqChange = (index, field, value) => {
         const updatedFaqs = [...faqList];
         updatedFaqs[index][field] = value;
@@ -165,23 +187,28 @@ const Existingprogram = () => {
                     </select>
 
                 </div>
-                <div>
+                {/* <div>
                     <label className="text-sm font-bold text-[#361A06] mb-2 block">Select Program Fee</label>
                     <input type="text"
                         value={programFee}
                         onChange={(e) => setProgramFee(e.target.value)}
                         className="border p-3 w-full rounded-md"
                     >
-                        {/* <option value="">Type Heading here...</option>
-                        <option value="4500">₹4500 INR</option>
-                        <option value="5000">₹5000 INR</option>
-                        <option value="6000">₹6000 INR</option>
-                        <option value="7500">₹7500 INR</option>
-                        <option value="10000">₹10000 INR</option>
-                        <option value="12000">₹12000 INR</option>
-                        <option value="15000">₹15000 INR</option>
-                        <option value="20000">₹20000 INR</option> */}
+            
                     </input>
+                </div> */}
+
+                <div>
+                    <label className="text-sm font-bold text-[#361A06] mb-2 block">Add Program Fee</label>
+                    <div className="relative">
+                        <input
+                            type="text"
+                            value={programFee}
+                            onChange={(e) => setProgramFee(e.target.value)}
+                            className="border p-3 w-full pr-12 rounded-md"
+                        />
+                        <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">INR</span>
+                    </div>
                 </div>
                 <div>
                     <label className="text-sm font-bold text-[#361A06] mb-2 block">Select Start Date</label>
@@ -192,17 +219,45 @@ const Existingprogram = () => {
                     <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className="border p-3 w-full rounded-md" />
                 </div>
                 <div>
-                    <label className="text-sm font-bold text-[#361A06] mb-2 block">Select Program Timing</label>
-                    <input type="text" value={timing} onChange={(e) => setTiming(e.target.value)} className="border p-3 w-full rounded-md">
-                        {/* <option value="">Type Heading here...</option>
-                        <option value="06:00 - 09:00 AM">06:00 - 09:00 AM</option>
-                        <option value="09:00 - 12:00 PM">09:00 - 12:00 PM</option>
-                        <option value="12:00 - 03:00 PM">12:00 - 03:00 PM</option>
-                        <option value="03:00 - 06:00 PM">03:00 - 06:00 PM</option>
-                        <option value="06:00 - 09:00 PM">06:00 - 09:00 PM</option>
-                        <option value="09:00 - 12:00 AM">09:00 - 12:00 AM</option> */}
+                    <label className="text-sm font-bold text-[#361A06] mb-2 block"> Select Program Timing</label>
+                    <input
+                        type="text"
+                        value={timing}
+                        className="border p-3 w-full rounded-md mb-2 bg-gray-100 cursor-pointer"
+                        onClick={toggleDropdown}
+                        readOnly
+                        placeholder="Click to select timing"
+                    />
 
-                    </input>
+                    {/* Dropdown Timepicker */}
+                    <div ref={dropdownRef} className="z-10 hidden bg-white rounded-lg shadow-sm w-full p-4 border">
+                        <div className="grid grid-cols-2 gap-4 mb-2">
+                            <div>
+                                <label className="block mb-2 text-sm font-medium text-gray-900">Start time:</label>
+                                <input
+                                    type="time"
+                                    value={startTime}
+                                    onChange={(e) => setStartTime(e.target.value)}
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                                    min="06:00"
+                                    max="22:00"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label className="block mb-2 text-sm font-medium text-gray-900">End time:</label>
+                                <input
+                                    type="time"
+                                    value={endTime}
+                                    onChange={(e) => setEndTime(e.target.value)}
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                                    min="06:00"
+                                    max="23:59"
+                                    required
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <label className="text-sm font-bold text-[#361A06] mb-2 block">Select Language</label>
@@ -215,7 +270,7 @@ const Existingprogram = () => {
             </div>
 
             <div className="mt-2">
-                <label className="text-sm font-bold text-[#361A06] mb-2 block">Add YouTube Link</label>
+                <label className="text-sm font-bold text-[#361A06] mb-2 block">Google Form Link</label>
                 <input type="text" placeholder="Type Heading here..." value={youtubeLink} onChange={(e) => setYoutubeLink(e.target.value)} className="border p-3 w-full rounded-md" />
             </div>
 
