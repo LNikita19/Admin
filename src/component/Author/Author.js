@@ -75,7 +75,7 @@ const Author = () => {
   };
 
   return (
-    <div className="2xl:ml-[90px] font-jakarta mt-[5rem] 2xl:w-[900px] lg:w-[700px] rounded-3xl bg-white shadow-lg border border-[#361A0633]  p-8">
+    <div className="ml-[90px] font-jakarta mt-[5rem] w-[900px] lg:w-[700px] rounded-3xl bg-white shadow-lg border border-[#361A0633]  p-8">
       <h2 className="text-[#361A06] text-2xl font-bold mb-6 ml-[2rem]">Author</h2>
 
       <ImageUpload selectedImage={image} setImage={setImage} />

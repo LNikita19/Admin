@@ -71,7 +71,7 @@ const Heading = () => {
 
   return (
     <>
-      <div className="2xl:ml-[90px] font-jakarta mt-[5rem] 2xl:w-[900px] h-auto lg:w-[700px] rounded-3xl bg-white  shadow-lg border border-[#361A0633] p-8">
+      <div className="ml-[90px] font-jakarta mt-[5rem] w-[900px] h-auto lg:w-[700px] rounded-3xl bg-white  shadow-lg border border-[#361A0633] p-8">
         <h2 className="text-[#361A06] text-2xl font-extrabold  ml-6 mb-4">Hero Section</h2>
         <div className="flex flex-col font-jakarta">
           <label className="ml-[30px] mt-[27px] text-[14px]  text-[#361A06] font-bold">

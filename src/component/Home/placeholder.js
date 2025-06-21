@@ -134,14 +134,14 @@ const Placeholder = () => {
   return (
     <div className="flex flex-col">
       <div>
-        <p className="font-jakarta lg:ml-[40px] 2xl:ml-[90px] mt-[18px] font-semibold text-2 xl font-jakarta text-[#1A2338B2]">
+        <p className="font-jakarta lg:ml-[40px] ml-[90px] mt-[18px] font-semibold text-2 xl font-jakarta text-[#1A2338B2]">
           Fee Placeholder
         </p>
       </div>
 
       {slidesData.map((slide) => (
         <div
-          className="flex lg:ml-[40px] 2xl:w-[934px] 2xl:ml-[90px] lg:w-[700px] my-2 rounded-3xl"
+          className="flex lg:ml-[40px] w-[934px] ml-[90px] lg:w-[700px] my-2 rounded-3xl"
           key={slide.id}
         >
           <SaveChangesPopup

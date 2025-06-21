@@ -58,7 +58,7 @@ const ClassList = () => {
     }
 
     return (
-        <div className="p-8 bg-[#FFF9E1] font-jakarta max-w-5xl border-2 border-gray-300 shadow-lg rounded-xl min-h-screen  m-12">
+        <div className="p-8 bg-[#FFF9E1] font-jakarta max-w-5xl  ml-[90px] border-2 border-gray-300 shadow-lg rounded-xl min-h-screen  m-12">
             <div className=" ">
                 <div className="flex justify-between  mb-6">
                     <h2 className="text-3xl font-bold text-[#361A06] ml-8">Online Classes</h2>

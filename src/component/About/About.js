@@ -70,7 +70,7 @@ const About = () => {
   };
 
   return (
-    <div className="2xl:ml-[90px] mt-[5rem] font-jakarta 2xl:w-[900px] h-auto lg:w-[700px] rounded-3xl bg-white shadow-lg border border-[#361A0633]  p-8">
+    <div className="ml-[90px] mt-[5rem] font-jakarta w-[900px] h-auto lg:w-[700px] rounded-3xl bg-white shadow-lg border border-[#361A0633]  p-8">
       <h2 className="text-[#361A06] text-2xl font-bold mb-6 ml-[2rem]">About Studio</h2>
 
       <div className="flex flex-row gap-4">
