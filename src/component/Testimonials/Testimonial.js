@@ -92,9 +92,9 @@ const Testimonials = () => {
                         </div>
                         <div className="max-w-3xl ml-[90px] bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
 
-                            <div className="grid grid-cols-3 gap-6">
+                            <div className="grid grid-cols-2 gap-6">
                                 {testimonials.map((testimonial) => (
-                                    <div key={testimonial._id} className="bg-[#FDF7C4] px-8 py-6 rounded-lg shadow-lg">
+                                    <div key={testimonial._id} className="bg-[#FDF7C4] px-8 py-4 rounded-lg shadow-lg">
                                         <div className="flex items-center mb-4">
                                             {testimonial.Photo && (
                                                 <img

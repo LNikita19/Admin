@@ -80,7 +80,7 @@ const Footer = () => {
     }, []);
 
     return (
-        <div className="2xl:ml-[90px] font-jakarta mt-[5rem] 2xl:w-[900px] h-auto lg:w-[700px] rounded-3xl bg-white shadow-lg border border-[#361A0633]  p-8">
+        <div className="2xl:ml-[90px] font-jakarta mt-[5rem] w-[900px] h-auto  rounded-3xl bg-white shadow-lg border border-[#361A0633]  p-8">
             <h2 className="text-[#361A06] text-2xl font-bold mb-6 ml-[2rem]">Footer Section</h2>
             <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#361A06]">Logo</label>
 
