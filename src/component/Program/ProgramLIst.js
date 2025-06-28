@@ -78,7 +78,7 @@ const ProgramList = () => {
         ...existingPrograms.map(p => ({ ...p, type: 'existing' })) // ✅ Include existing programs
     ];
     return (
-        <div className="p-8 font-jakarta">
+        <div className="p-8 ml-[90px] mt-[5rem] font-jakarta w-[900px] h-auto lg:w-[700px] rounded-3xl bg-white shadow-lg border border-[#361A0633]">
             {/* Header */}
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-2xl font-bold text-[#361A06]">Programs</h1>
