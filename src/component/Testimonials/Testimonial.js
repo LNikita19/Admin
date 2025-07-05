@@ -91,33 +91,34 @@ const Testimonials = () => {
                             </button>
                         </div>
                         <div className="max-w-3xl ml-[90px] bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
-
                             <div className="grid grid-cols-2 gap-6">
                                 {testimonials.map((testimonial) => (
                                     <div key={testimonial._id} className="bg-[#FDF7C4] px-8 py-4 rounded-lg shadow-lg">
                                         <div className="flex items-center mb-4">
-                                            {testimonial.Photo && (
-                                                <img
-                                                    src={testimonial.Photo}
-                                                    alt={testimonial.Name}
-                                                    className="w-12 h-12 rounded-full object-cover mr-4"
-                                                />
-                                            )}
+                                            <img
+                                                src={testimonial.Photo || "/image5.png"}  // Fallback to default image
+                                                alt={testimonial.Name}
+                                                className="w-12 h-12 rounded-full object-cover mr-4"
+                                            />
                                             <div>
                                                 <h3 className="font-bold text-[#361A06] text-lg">{testimonial.Name}</h3>
                                                 <p className="text-sm text-[#6B7280]">{testimonial.Profession}</p>
                                             </div>
                                         </div>
-                                        <p className="text-[#361A06] ">"{testimonial.comment}"</p>
+                                        <p className="text-[#361A06]">"{testimonial.comment}"</p>
                                         <div className="mt-4 flex flex-col rounded-lg space-y-2 gap-2">
-                                            <button onClick={() => handleEdit(testimonial)} className="bg-[#fff] text-[#361A06] px-3 py-2 text-center rounded shadow-md">Edit Comment</button>
-                                            <button onClick={() => handleDelete(testimonial._id)} className="bg-[#361A06] text-[#FFF9E1] px-3 py-2 text-center rounded shadow-md">Delete Comment </button>
+                                            <button onClick={() => handleEdit(testimonial)} className="bg-[#fff] text-[#361A06] px-3 py-2 text-center rounded shadow-md">
+                                                Edit Comment
+                                            </button>
+                                            <button onClick={() => handleDelete(testimonial._id)} className="bg-[#361A06] text-[#FFF9E1] px-3 py-2 text-center rounded shadow-md">
+                                                Delete Comment
+                                            </button>
                                         </div>
                                     </div>
-
                                 ))}
                             </div>
                         </div>
+
                     </>
                 ) : (
                     <>
