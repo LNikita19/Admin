@@ -135,7 +135,7 @@ const About = () => {
       }
     } catch (e) {
       console.error("Error fetching about data:", e);
-      toast.error("Failed to fetch about data");
+      // toast.error("Failed to fetch about data");
     }
   };
 

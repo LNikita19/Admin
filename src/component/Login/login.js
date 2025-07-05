@@ -98,7 +98,7 @@ const Login = ({ setIsLoggedIn }) => {
             </div>
 
             <div className="text-sm">
-              <a href="/reset-password" className="text-sm text-[#361A06] hover:underline">
+              <a href="/resetPassword" className="text-sm text-[#361A06] hover:underline">
                 Forget Password?
               </a>
 

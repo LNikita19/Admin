@@ -189,7 +189,7 @@ const ImageUpload = ({
       );
 
       if (response?.data?.status) {
-        toast.success("Uploaded Successfully");
+        // toast.success("Uploaded Successfully");
         setImage(response.data.data?.Photo);
         setToggleSwitch(response?.data?.data?.Published);
         setActiveSlideId(response?.data?.data?.id);
@@ -198,7 +198,7 @@ const ImageUpload = ({
       }
     } catch (e) {
       console.error("Upload Error:", e);
-      toast.error("Something went wrong while uploading");
+      // toast.error("Something went wrong while uploading");
     }
   }
 

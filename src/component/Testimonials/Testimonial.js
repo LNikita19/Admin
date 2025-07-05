@@ -57,15 +57,23 @@ const Testimonials = () => {
         setTestimonialId(null);
         setIsAddingNew(true);
     };
-
     const onSaveChanges = async () => {
         try {
-            const payload = { Name: name, Profession: profession, comment, Photo: image };
+            const payload = {
+                Name: name,
+                Profession: profession,
+                comment,
+                Photo: image
+            };
+
             const apiUrl = testimonialId
                 ? `${API_BASE_URL}/updatetestimonialdata/${testimonialId}`
                 : `${API_BASE_URL}/createtestimonial`;
 
-            const response = await axios.post(apiUrl, payload);
+            const response = testimonialId
+                ? await axios.put(apiUrl, payload) // ✅ Use PUT for update
+                : await axios.post(apiUrl, payload); // ✅ Use POST for create
+
             if (response?.data?.status) {
                 toast.success("Data Saved Successfully");
                 getTestimonialData();
@@ -73,8 +81,10 @@ const Testimonials = () => {
             }
         } catch (error) {
             console.error("Error saving testimonial data:", error);
+            toast.error("Failed to save testimonial data");
         }
     };
+
 
     return (
         <>
@@ -96,10 +106,11 @@ const Testimonials = () => {
                                     <div key={testimonial._id} className="bg-[#FDF7C4] px-8 py-4 rounded-lg shadow-lg">
                                         <div className="flex items-center mb-4">
                                             <img
-                                                src={testimonial.Photo || "/image5.png"}  // Fallback to default image
+                                                src={testimonial.Photo && testimonial.Photo.trim() !== "" ? testimonial.Photo : "/image5.png"}
                                                 alt={testimonial.Name}
-                                                className="w-12 h-12 rounded-full object-cover mr-4"
+                                                className="w-12 h-12 rounded-full object-cover"
                                             />
+
                                             <div>
                                                 <h3 className="font-bold text-[#361A06] text-lg">{testimonial.Name}</h3>
                                                 <p className="text-sm text-[#6B7280]">{testimonial.Profession}</p>

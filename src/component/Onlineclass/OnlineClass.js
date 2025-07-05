@@ -97,10 +97,11 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
             }
 
             if (response?.data?.status) {
+                console.log("Navigation triggered");
                 toast.success(id ? "Class Updated Successfully" : "Class Saved Successfully");
-
                 navigate("/ClassList");
             }
+
         } catch (error) {
             console.error("Error saving class:", error);
             toast.error("Failed to save class");

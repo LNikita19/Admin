@@ -72,7 +72,7 @@ function App() {
               <Route path="/ComboProgram" element={<PrivateRoute element={<ComboProgram />} isLoggedIn={isLoggedIn} />} />
               <Route path="/ComboProgram/:id" element={<PrivateRoute element={<ComboProgram />} isLoggedIn={isLoggedIn} />} />
               <Route path="/Existingprogram" element={<PrivateRoute element={<Existingprogram />} isLoggedIn={isLoggedIn} />} />
-              <Route path="/reset-password" element={<ResetPassword/>} />
+              <Route path="/resetPassword" element={<ResetPassword />} />
 
             </Routes>
           </div>
