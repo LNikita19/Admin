@@ -1,53 +1,65 @@
 import React from "react";
+import { toast } from "react-toastify";
 
-const ImageUpload = ({ selectedImages, setImages }) => {
-  const handleImageChange = (e) => {
-    const files = Array.from(e.target.files);
+const MAX_FILE_SIZE_MB = 2;
 
-    setImages((prevImages) => [...prevImages, ...files]); // Append new images
-  };
+const ImageUpload = ({ image, index, onImageChange, onRemove }) => {
+  const handleChange = (e) => {
+    const file = e.target.files[0];
 
-  const handleDrop = (e) => {
-    e.preventDefault();
-    const files = Array.from(e.dataTransfer.files);
-    setImages((prevImages) => [...prevImages, ...files]);
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      toast.error("Only image files are allowed");
+      return;
+    }
+
+    if (file.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
+      toast.error("Max file size is 2MB");
+      return;
+    }
+
+    onImageChange(file, index);
   };
 
   return (
     <div
-      className="pt-6 ml-[30px] flex flex-col items-center justify-center w-[250px] 2xl:h-[152px] lg:h-[150px] rounded bg-[#C2C2C28F] cursor-pointer"
-      onDoubleClick={() => document.getElementById("upload-input").click()}
-      onDragOver={(e) => e.preventDefault()}
-      onDrop={handleDrop}
+      className="relative w-[200px] h-[150px] bg-[#C2C2C28F] rounded flex items-center justify-center cursor-pointer"
+      onClick={() => document.getElementById(`upload-input-${index}`).click()}
     >
       <input
         type="file"
-        id="upload-input"
+        id={`upload-input-${index}`}
         style={{ display: "none" }}
-        onChange={handleImageChange}
+        onChange={handleChange}
         accept="image/*"
-        multiple // Allow multiple files
       />
-      {selectedImages.length > 0 ? (
-        <div className="flex flex-wrap gap-2">
-          {selectedImages.map((image, index) => (
-            <img
-              key={index}
-              src={image instanceof File ? URL.createObjectURL(image) : image}
-              alt={`uploaded-${index}`}
-              className="w-16 h-16 object-cover rounded"
-            />
-          ))}
-        </div>
-      ) : (
+      {image ? (
         <>
-          <img src="/Vector.png" alt="upload-icon" />
-          <p className="text-sm text-center text-gray-500 mt-[11px]">
-            "Drag & Drop" or "Click to upload"
-          </p>
+          <img
+            src={image instanceof File ? URL.createObjectURL(image) : image}
+            alt={`uploaded-${index}`}
+            className="w-full h-full object-cover rounded"
+          />
+          <button
+            className="absolute top-1 right-1 bg-red-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center"
+            onClick={(e) => {
+              e.stopPropagation();
+              onRemove(index);
+            }}
+          >
+            ✖
+          </button>
         </>
+      ) : (
+
+        <div className="text-gray-600 text-sm text-center px-2">
+          <img src="/Vector.png" alt="upload" className="mx-auto mb-1" />
+          Click to upload
+        </div>
       )}
     </div>
+
   );
 };
 

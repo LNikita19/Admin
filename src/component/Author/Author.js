@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 
 const Author = () => {
   const [description, setDescription] = useState("");
+
   const [heading, setHeading] = useState("");
   const [activeSlideId, setActiveSlideId] = useState(null);
   const [image, setImage] = useState(null);

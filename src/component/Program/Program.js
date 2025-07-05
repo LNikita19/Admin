@@ -61,6 +61,18 @@ const Program = () => {
     };
 
     const handleSave = async () => {
+        const errors = [];
+
+        if (!program.trim()) errors.push("Program Name is required");
+        if (!programFee.trim()) errors.push("Program Fee is required");
+        if (!startDate) errors.push("Start Date is required");
+        if (!endDate) errors.push("End Date is required");
+        if (!timing) errors.push("Program Timing is required");
+
+        if (errors.length > 0) {
+            toast.error(errors[0]); // Show only the first error
+            return;
+        }
         try {
             const formData = new FormData();
             formData.append("Photo", image);

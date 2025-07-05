@@ -75,8 +75,8 @@ const ImageUpload = ({
   return (
     <>
       <div
-        className="pt-6 ml-[30px]  flex flex-col items-center justify-center w-[250px] 2xl:h-[152px] lg:h-[150px] rounded bg-[#C2C2C28F]"
-        onDoubleClick={handleClick}
+        className="ml-[30px]  flex flex-col items-center justify-center w-[250px] 2xl:h-[152px] lg:h-[150px] rounded bg-[#C2C2C28F]"
+        onClick={handleClick}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
       >
@@ -88,18 +88,30 @@ const ImageUpload = ({
           accept="image/*"
         />
         {selectedImage ? (
-          <img
-            src={selectedImage}
-            alt="uploaded"
-            className="w-full h-full object-cover rounded"
-          />
+          <div className="relative w-full h-full">
+            <img
+              src={selectedImage}
+              alt="uploaded"
+              className="w-full h-full object-cover rounded"
+            />
+            <button
+              className="absolute top-1 right-1 bg-red-600 text-white w-5 h-5 rounded-full flex items-center justify-center text-xs"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleCancel();
+              }}
+              title="Remove Image"
+            >
+              ✖
+            </button>
+          </div>
         ) : (
           <img src="/Vector.png" alt="upload-icon" className="" />
         )}
         {!selectedImage && (
           <>
             <p className="text-sm text-center text-gray-500 mt-[11px]">
-              "Drag & Drop" or <br /> "Double click to upload image"
+              "Drag & Drop" or upload image"
             </p>
 
           </>
@@ -107,8 +119,8 @@ const ImageUpload = ({
         )}
 
       </div>
-      <p className="ml-[3rem] lg:mt-[6px]  text-xs text-gray-400">
-        SVG, PNG, JPG or GIF (max. 5MB)
+      <p className="ml-[3rem] mt-[6px] text-xs text-gray-400">
+        Only JPG, PNG, SVG or GIF — Max 2MB
       </p>
     </>
   );

@@ -49,13 +49,13 @@ const TestimonialImages = () => {
             });
 
             if (response?.data?.status) {
-                toast.success("Image Uploaded Successfully");
+                // toast.success("Image Uploaded Successfully");
                 getTestimonialImages(); // Refresh the list
                 setShowModal(false); // Close the modal
             }
         } catch (error) {
             console.error("Error uploading image:", error);
-            toast.error("Failed to upload image");
+            // toast.error("Failed to upload image");
         } finally {
             setIsLoading(false);
         }

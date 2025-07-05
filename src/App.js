@@ -19,6 +19,7 @@ import OnlineClass from "./component/Onlineclass/OnlineClass";
 import ClassList from "./component/Onlineclass/ClassList";
 import ComboProgram from "./component/Program/Combo/Comboprogram";
 import Existingprogram from "./component/Program/Existing/Existingprogram";
+import ResetPassword from "./component/Login/ResetPassword";
 
 // ✅ Private Route Wrapper
 const PrivateRoute = ({ element, isLoggedIn }) => {
@@ -71,6 +72,8 @@ function App() {
               <Route path="/ComboProgram" element={<PrivateRoute element={<ComboProgram />} isLoggedIn={isLoggedIn} />} />
               <Route path="/ComboProgram/:id" element={<PrivateRoute element={<ComboProgram />} isLoggedIn={isLoggedIn} />} />
               <Route path="/Existingprogram" element={<PrivateRoute element={<Existingprogram />} isLoggedIn={isLoggedIn} />} />
+              <Route path="/reset-password" element={<ResetPassword/>} />
+
             </Routes>
           </div>
         </div>

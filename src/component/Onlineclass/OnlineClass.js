@@ -10,7 +10,7 @@ import { API_BASE_URL } from "../../config";
 
 const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
     const { id } = useParams();
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // must be inside a functional component rendered via <Route>
     const location = useLocation(); // Import and use useLocation
     const passedClassData = location.state?.programData || classData; // Get data from location.state or props
 
@@ -58,6 +58,18 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
     };
 
     const handleSave = async () => {
+        const errors = [];
+
+        if (!program.trim()) errors.push("Program Name is required");
+        if (!programFee.trim()) errors.push("Program Fee is required");
+        if (!startDate) errors.push("Start Date is required");
+        if (!endDate) errors.push("End Date is required");
+        if (!timing) errors.push("Program Timing is required");
+
+        if (errors.length > 0) {
+            toast.error(errors[0]); // Show only the first error
+            return;
+        }
         try {
             const formData = new FormData();
             formData.append("Photo", image);

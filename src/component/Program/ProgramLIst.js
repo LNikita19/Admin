@@ -78,7 +78,7 @@ const ProgramList = () => {
         ...existingPrograms.map(p => ({ ...p, type: 'existing' })) // ✅ Include existing programs
     ];
     return (
-        <div className="p-8 ml-[90px] mt-[5rem] font-jakarta w-[900px] h-auto lg:w-[700px] rounded-3xl bg-white shadow-lg border border-[#361A0633]">
+        <div className="p-8 ml-[90px] mt-[5rem] font-jakarta w-[900px] h-auto lg:w-[1200px] rounded-3xl bg-white shadow-lg border border-[#361A0633]">
             {/* Header */}
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-2xl font-bold text-[#361A06]">Programs</h1>
@@ -134,7 +134,7 @@ const ProgramList = () => {
 
             {/* Programs Grid */}
             {!isLoading && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 shadow-lg ml-[20px]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-16 shadow-lg ml-[20px]">
                     {allPrograms.length > 0 ? (
                         allPrograms.map((program) => (
                             <div
@@ -147,7 +147,7 @@ const ProgramList = () => {
                                     alt={program.selectProgram}
                                     className="w-full h-48 object-cover"
                                     onError={(e) => {
-                                        e.target.src = '/default-program.jpg';
+                                        // e.target.src = '/default-program.jpg';
                                     }}
                                 />
                                 <div className="absolute text-[8px] top-3 left-3 bg-[#FDF7C4] text-[#361A06] font-bold md:text-[16px] px-3 py-1 rounded-full">

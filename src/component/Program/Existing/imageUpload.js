@@ -30,7 +30,7 @@ const ImageUpload = ({ selectedImage, setImage }) => {
   return (
     <div
       className="2xl:ml-[2px] lg:ml-[33px] flex flex-col items-center justify-center w-full 2xl:h-[152px] lg:h-[150px] rounded bg-[#C2C2C28F]"
-      onDoubleClick={handleClick}
+      onClick={handleClick}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
     >
@@ -52,11 +52,12 @@ const ImageUpload = ({ selectedImage, setImage }) => {
       )}
       {!selectedImage && (
         <>
-          <p className="text-sm text-gray-500 mt-[11px]">
-            "Drag & Drop" or <br /> "Double click to upload image"
-          </p>
 
+          <p className="ml-[3rem] mt-[6px] text-xs text-gray-400">
+            Only JPG, PNG, SVG  — Max 2MB
+          </p>
         </>
+
       )}
     </div>
   );

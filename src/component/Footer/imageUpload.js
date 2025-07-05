@@ -1,8 +1,9 @@
 import React from "react";
-import SaveButton from "../Buttons/saveButton";
 import axios from "axios";
-import { API_BASE_URL } from "../../config";
 import { toast } from "react-toastify";
+import { API_BASE_URL } from "../../config";
+
+const MAX_FILE_SIZE_MB = 2;
 
 const ImageUpload = ({
   selectedImage,
@@ -10,16 +11,32 @@ const ImageUpload = ({
   slideId,
   setActiveSlideId,
 }) => {
-  const handleImageChange = (e) => {
+  const handleImageChange = async (e) => {
     const file = e.target.files[0];
+    if (!file) return;
+
+    // ✅ Validate type
+    if (!file.type.startsWith("image/")) {
+      toast.error("Only image files are allowed (JPG, PNG, etc)");
+      return;
+    }
+
+    // ✅ Validate size
+    if (file.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
+      toast.error("Image must be less than 2MB");
+      return;
+    }
+
     const reader = new FileReader();
-    reader.onloadend = () => {
-      setImage(reader.result);
+    reader.onloadend = async () => {
+      const base64Image = reader.result;
+      setImage(base64Image);
+
+      // ✅ Save image immediately
+      await saveFooterData(base64Image);
     };
 
-    if (file) {
-      reader.readAsDataURL(file);
-    }
+    reader.readAsDataURL(file);
   };
 
   const handleDrop = (e) => {
@@ -28,56 +45,51 @@ const ImageUpload = ({
     handleImageChange({ target: { files: [file] } });
   };
 
-  const handleCancel = () => {
+  const handleCancel = (e) => {
+    e.stopPropagation();
     setImage(null);
-  };
-
-  async function saveFooterData() {
-    try {
-      const payload = {
-        id: slideId,
-        Photo: selectedImage,
-      };
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-
-      const response = await axios.post(
-        `${API_BASE_URL}/createfooterData`,
-        payload,
-        config
-      );
-      console.log(response?.data?.status);
-      if (response?.data?.status) {
-        toast.success("Updated Successfully");
-      }
-      setImage(response.data.data?.Photo);
-      setActiveSlideId(response?.data?.data?.id);
-    } catch (e) {
-      console.log("Error:", e);
-    }
-  }
-
-  const handleSave = () => {
-    saveFooterData();
   };
 
   const handleClick = () => {
     document.getElementById("fileInput").click();
   };
 
-  const handleDragOver = (e) => {
-    e.preventDefault();
+  const saveFooterData = async (imageData) => {
+    try {
+      const payload = {
+        id: slideId,
+        Photo: imageData,
+      };
+
+      const response = await axios.post(
+        `${API_BASE_URL}/createfooterData`,
+        payload,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response?.data?.status) {
+        // toast.success("Image uploaded successfully");
+        setImage(response.data.data?.Photo);
+        setActiveSlideId(response.data.data?.id);
+      } else {
+        toast.error("Image upload failed");
+      }
+    } catch (e) {
+      console.error("Upload Error:", e);
+      // toast.error("Something went wrong while uploading");
+    }
   };
 
   return (
     <>
       <div
-        className="pt-6 ml-[30px] flex flex-col items-center justify-center w-[250px] 2xl:h-[152px] lg:h-[150px] rounded bg-[#C2C2C28F]"
-        onDoubleClick={handleClick}
-        onDragOver={handleDragOver}
+        className="ml-[30px] flex flex-col items-center justify-center w-[450px] 2xl:h-[152px] lg:h-[150px] rounded bg-[#C2C2C28F] cursor-pointer"
+        onClick={handleClick}
+        onDragOver={(e) => e.preventDefault()}
         onDrop={handleDrop}
       >
         <input
@@ -87,25 +99,34 @@ const ImageUpload = ({
           onChange={handleImageChange}
           accept="image/*"
         />
+
         {selectedImage ? (
-          <img
-            src={selectedImage}
-            alt="uploaded"
-            className="w-full h-full object-cover rounded"
-          />
+          <div className="relative w-full h-full">
+            <img
+              src={selectedImage}
+              alt="uploaded"
+              className="w-full h-full object-cover rounded"
+            />
+            <button
+              className="absolute top-1 right-1 bg-red-600 text-white w-5 h-5 rounded-full flex items-center justify-center text-xs"
+              onClick={handleCancel}
+              title="Remove Image"
+            >
+              ✖
+            </button>
+          </div>
         ) : (
-          <img src="/Vector.png" alt="upload-icon" className="" />
-        )}
-        {!selectedImage && (
           <>
+            <img src="/Vector.png" alt="upload-icon" className="w-10 h-10" />
             <p className="text-sm text-center text-gray-500 mt-[11px]">
-              "Drag & Drop" or <br /> "Double click to upload image"
+              Click or drag to upload image
             </p>
           </>
         )}
       </div>
+
       <p className="ml-[3rem] lg:mt-[6px] text-xs text-gray-400">
-        SVG, PNG, JPG or GIF (max. 5MB)
+        Only JPG, PNG, SVG or GIF — Max 2MB
       </p>
     </>
   );
