@@ -22,7 +22,7 @@ const TestimonialImages = () => {
             }
         } catch (error) {
             console.error("Error fetching images:", error);
-            toast.error("Failed to load images");
+            // toast.error("Failed to load images");
         }
     };
 

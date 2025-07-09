@@ -17,6 +17,8 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
     const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
     const [program, setProgram] = useState("");
+    const [googleLink, setGoogleLink] = useState("");
+
     const [programFee, setProgramFee] = useState("");
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
@@ -26,6 +28,7 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
     const [faqList, setFaqList] = useState([{ question: "", answer: "" }]);
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
+
     const dropdownRef = useRef(null);
 
     const formatAMPM = (timeStr) => {
@@ -74,7 +77,9 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
             const formData = new FormData();
             formData.append("Photo", image);
             formData.append("selectProgram", program);
+            formData.append("googleLink", googleLink);
             formData.append("programFees", programFee);
+
             formData.append("startDate", new Date(startDate).toISOString().split('T')[0]);
             formData.append("endDate", new Date(endDate).toISOString().split('T')[0]);
             formData.append("programTiming", timing);
@@ -99,7 +104,11 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
             if (response?.data?.status) {
                 console.log("Navigation triggered");
                 toast.success(id ? "Class Updated Successfully" : "Class Saved Successfully");
-                navigate("/ClassList");
+                if (onSave) {
+                    onSave(); // Let parent handle the navigation/state
+                } else {
+                    navigate("/ClassList"); // Fallback
+                }
             }
 
         } catch (error) {
@@ -114,7 +123,9 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
             setDescription(passedClassData.Description || "");
             setImage(passedClassData.Photo || null);
             setProgram(passedClassData.selectProgram || "");
+            setGoogleLink(passedClassData.googleLink || "");
             setProgramFee(passedClassData.programFees || "");
+
             setStartDate(passedClassData.startDate ? formatDate(passedClassData.startDate) : "");
 
             setEndDate(passedClassData.endDate ? formatDate(passedClassData.endDate) : "");
@@ -131,6 +142,8 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
             const data = response.data;
 
             setProgram(data.selectProgram);
+            setGoogleLink(data.googleLink);
+
             setProgramFee(data.programFees);
             setStartDate(data.startDate);
             setEndDate(data.endDate);
@@ -255,6 +268,11 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
                 <label className="text-sm font-bold text-[#361A06] mb-2 block">Add YouTube Link</label>
                 <input type="text" placeholder="Type Heading here..." value={youtubeLink} onChange={(e) => setYoutubeLink(e.target.value)} className="border p-3 w-full rounded-md" />
             </div>
+            <div className="mt-2">
+                <label className="text-sm font-bold text-[#361A06] mb-2 block">Add Google Link</label>
+                <input type="text" placeholder="Type Heading here..." value={googleLink} onChange={(e) => setGoogleLink(e.target.value)} className="border p-3 w-full rounded-md" />
+            </div>
+
 
             <div className="mt-2">
                 <label className="text-sm font-bold text-[#361A06] mb-2 block">Description</label>

@@ -12,6 +12,7 @@ const Author = () => {
   const [activeSlideId, setActiveSlideId] = useState(null);
   const [image, setImage] = useState(null);
   const [remainingWords, setRemainingWords] = useState(100); // Word counter
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     getAboutData();
