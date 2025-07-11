@@ -109,9 +109,9 @@ const Heading = () => {
             disabled={!isEditing}
           ></textarea>
 
-          <p className="ml-[30px] text-[12px] text-[#361A06]">
+          {/* <p className="ml-[30px] text-[12px] text-[#361A06]">
             100/100 Words Remaining
-          </p>
+          </p> */}
 
           {/* Buttons */}
           <div className="font-jakarta mb-[32px] ml-[2rem]  2xl:mt-[30px] lg:mt-[13px] space-x-4">

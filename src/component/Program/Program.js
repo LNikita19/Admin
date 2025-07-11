@@ -250,7 +250,13 @@ const Program = () => {
             </div>
             <div className="mt-2">
                 <label className="text-sm font-bold text-[#361A06] mb-2 block">Google Form Link</label>
-                <input type="text" placeholder="Type Heading here..." value={youtubeLink} onChange={(e) => setYoutubeLink(e.target.value)} className="border p-3 w-full rounded-md" />
+                <input
+                    type="text"
+                    placeholder="Type Heading here..."
+                    value={youtubeLink}
+                    onChange={(e) => setYoutubeLink(e.target.value)}
+                    className="border p-3 w-full rounded-md"
+                />
             </div>
 
 

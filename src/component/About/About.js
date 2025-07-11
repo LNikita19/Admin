@@ -183,6 +183,10 @@ const About = () => {
   };
 
   const handleAddImageBox = () => {
+    if (images.length >= 5) {
+      toast.warning("Only 5 images are allowed.");
+      return;
+    }
     setImages((prev) => [...prev, null]);
   };
 
@@ -220,6 +224,7 @@ const About = () => {
         >
           + Add Image
         </button>
+
       </div>
 
       <div className="flex flex-col font-jakarta">

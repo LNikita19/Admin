@@ -73,13 +73,28 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
             toast.error(errors[0]); // Show only the first error
             return;
         }
+
         try {
             const formData = new FormData();
-            formData.append("Photo", image);
+
+            // ✅ Convert base64 image to Blob if needed
+            if (image && image.startsWith("data:image")) {
+                const byteString = atob(image.split(',')[1]);
+                const mimeString = image.split(',')[0].split(':')[1].split(';')[0];
+                const ab = new ArrayBuffer(byteString.length);
+                const ia = new Uint8Array(ab);
+                for (let i = 0; i < byteString.length; i++) {
+                    ia[i] = byteString.charCodeAt(i);
+                }
+                const blob = new Blob([ab], { type: mimeString });
+                formData.append("Photo", blob); // ✅ Append converted Blob
+            } else if (image) {
+                formData.append("Photo", image); // fallback if already a file/blob
+            }
+
             formData.append("selectProgram", program);
             formData.append("googleLink", googleLink);
             formData.append("programFees", programFee);
-
             formData.append("startDate", new Date(startDate).toISOString().split('T')[0]);
             formData.append("endDate", new Date(endDate).toISOString().split('T')[0]);
             formData.append("programTiming", timing);
@@ -102,7 +117,6 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
             }
 
             if (response?.data?.status) {
-                console.log("Navigation triggered");
                 toast.success(id ? "Class Updated Successfully" : "Class Saved Successfully");
                 if (onSave) {
                     onSave(); // Let parent handle the navigation/state
@@ -116,6 +130,7 @@ const OnlineClass = ({ classData, onSave }) => { // Receive classData prop
             toast.error("Failed to save class");
         }
     };
+
     useEffect(() => {
         if (id && !passedClassData) { // Fetch data only if id exists and no classData is passed
             fetchClassData(id);

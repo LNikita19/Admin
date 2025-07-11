@@ -97,12 +97,12 @@ const Login = ({ setIsLoggedIn }) => {
               </label>
             </div>
 
-            <div className="text-sm">
+            {/* <div className="text-sm">
               <a href="/resetPassword" className="text-sm text-[#361A06] hover:underline">
                 Forget Password?
               </a>
 
-            </div>
+            </div> */}
           </div>
 
           <div>

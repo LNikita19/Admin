@@ -76,11 +76,16 @@ const ClassList = () => {
                 <div className="space-y-6 max-w-2xl">
                     {classes.map((cls) => (
                         <div key={cls._id} className="bg-white ml-[2rem] rounded-xl p-4 shadow-md overflow-hidden border border-gray-200">
-                            <img src={cls.Photo} alt={cls.selectProgram} className="w-full h-64 object-cover" onError={(e) => {
-                                e.target.onerror = null;
-                                e.target.src = ""; // Hide broken image
-                                e.target.style.display = "none";
-                            }} />
+                            <img
+                                src={`data:image/png;base64,${cls.Photo}`}
+                                alt={cls.selectProgram}
+                                className="w-full h-64 object-cover"
+                                onError={(e) => {
+                                    e.target.onerror = null;
+                                    e.target.style.display = "none";
+                                }}
+                            />
+
                             <div className=" border-2 border-gray-100 p-4 ">
                                 <p className="text-sm text-[#FD8531] mt-8 font-bold">TRAINING ONLINE</p>
                                 <h3 className="text-xl font-semibold text-[#361A06] mt-2">{cls.selectProgram}</h3>

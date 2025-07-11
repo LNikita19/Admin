@@ -125,7 +125,7 @@ const Existingprogram = () => {
 
             const combinedPrograms = [
                 ...regularPrograms.map(p => ({ ...p, type: 'regular', label: p.selectProgram })),
-                ...comboPrograms.map(p => ({ ...p, type: 'combo', label: `Combo: ${p.selectProgram}` }))
+                ...comboPrograms.map(p => ({ ...p, type: 'combo', label: p.selectProgram }))
             ];
             setAllPrograms(combinedPrograms);
         } catch (error) {

@@ -5,8 +5,11 @@ import { toast } from "react-toastify";
 import SaveButton from "../Buttons/saveButton";
 import ImageUpload from "./imageUpload";
 import TestimonialImages from "./TestimoniamImages";
+const MAX_WORDS = 100;
 
 const Testimonials = () => {
+    const [wordCount, setWordCount] = useState(0);
+
     const [name, setName] = useState("");
     const [profession, setProfession] = useState("");
     const [comment, setComment] = useState("");
@@ -160,12 +163,19 @@ const Testimonials = () => {
 
                                 <label className="ml-[30px] mt-[27px] text-[14px] font-semibold text-[#361A06]">Comment</label>
                                 <textarea
-                                    className="ml-[30px] text-[12px] border border-[#0000003B] px-2 py-2 rounded 2xl:w-[540px] lg:w-[360px] h-auto"
                                     value={comment}
-                                    placeholder="Type Comment ...."
-                                    onChange={(e) => setComment(e.target.value)}
-                                ></textarea>
-                                <p className="ml-[30px] text-[12px] text-[#361A06]">100/100 Words Remaining</p>
+                                    onChange={(e) => {
+                                        const words = e.target.value.trim().split(/\s+/);
+                                        if (words.length <= MAX_WORDS) {
+                                            setComment(e.target.value);
+                                            setWordCount(words.filter(Boolean).length);
+                                        }
+                                    }}
+                                    rows={4}
+                                    className="ml-[30px] text-[12px] border border-[#0000003B] px-2 py-2 rounded 2xl:w-[540px] lg:w-[360px] h-auto" />
+                                <p className="ml-[30px] text-[12px] text-[#361A06]">
+                                    {MAX_WORDS - wordCount}/100 Words Remaining
+                                </p>
 
                                 <SaveButton onSave={onSaveChanges} />
                             </div>

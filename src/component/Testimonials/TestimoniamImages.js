@@ -3,8 +3,10 @@ import { API_BASE_URL } from "../../config";
 import axios from "axios";
 import { toast } from "react-toastify";
 import ImageUpload1 from "./imageUpload1";
+const MAX_IMAGES = 15;
 
 const TestimonialImages = () => {
+
     const [uploadedImages, setUploadedImages] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -34,6 +36,12 @@ const TestimonialImages = () => {
     const handleCloseModal = () => {
         setShowModal(false);
         setSelectedImage(null); // Reset selected image when closing modal
+    };
+
+    const handleRemoveImage = (index) => {
+        const updatedImages = [...uploadedImages];
+        updatedImages.splice(index, 1);
+        setUploadedImages(updatedImages);
     };
 
     const handleImageUpload = async () => {
@@ -66,10 +74,12 @@ const TestimonialImages = () => {
             <div className="flex justify-between items-center mb-6">
                 <button
                     onClick={handleAddNewImage}
-                    className="bg-[#361A06] text-white px-4 py-2 rounded-md shadow-md hover:bg-[#4A2810] transition-colors"
+                    className="bg-[#361A06] text-white px-4 py-2 rounded-md shadow-md hover:bg-[#4A2810] transition-colors disabled:opacity-50"
+                    disabled={uploadedImages.length >= MAX_IMAGES}
                 >
                     Add New Image
                 </button>
+
             </div>
 
             {/* Images Grid */}
@@ -81,8 +91,19 @@ const TestimonialImages = () => {
                             alt="Uploaded testimonial"
                             className="w-full h-64 object-cover rounded-lg shadow-md transition-transform group-hover:scale-105"
                         />
+                        <button
+                            className="absolute top-1 right-1 bg-red-600 text-white w-5 h-5 rounded-full flex items-center justify-center text-xs"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                handleRemoveImage(index);
+                            }}
+                            title="Remove Image"
+                        >
+                            ✖
+                        </button>
                     </div>
                 ))}
+
             </div>
 
             {/* Modal Popup */}

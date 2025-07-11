@@ -153,7 +153,9 @@ const ImageUpload = ({
     const reader = new FileReader();
     reader.onloadend = async () => {
       setImage(reader.result);
-      await saveAboutData(reader.result); // Upload immediately
+      reader.onloadend = () => {
+        setImage(reader.result); // ✅ Only update the preview
+      };
     };
     reader.readAsDataURL(file);
   };
