@@ -29,7 +29,7 @@ const ImageUpload = ({ selectedImage, setImage }) => {
 
   return (
     <div
-      className="2xl:ml-[2px] lg:ml-[33px] flex flex-col items-center justify-center w-full 2xl:h-1/3 lg:h-1/3 rounded bg-[#C2C2C28F]"
+      className="2xl:ml-[2px] lg:ml-[33px] flex flex-col items-center justify-center w-full 2xl:h-1/3 lg:h-1/3 p-6 rounded bg-[#C2C2C28F]"
       onClick={handleClick}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
