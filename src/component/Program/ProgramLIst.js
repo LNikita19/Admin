@@ -29,19 +29,40 @@ const ProgramList = () => {
         return `${diffDays} Days`;
     };
     // Fetch both regular and combo programs
+    // const fetchAllPrograms = async () => {
+    //     setIsLoading(true);
+    //     try {
+    //         const [regularResponse, comboResponse, existingResponse] = await Promise.all([
+    //             axios.get(`${API_BASE_URL}/getprogramData`),
+    //             axios.get(`${API_BASE_URL}/getComboPrograms`),
+    //             axios.get(`${API_BASE_URL}/getExistingPrograms`) // ✅ Fetch Existing Programs
+    //         ]);
+
+    //         setPrograms(regularResponse.data.data || []);
+    //         setComboPrograms(comboResponse.data.data || []);
+    //         setExistingPrograms(existingResponse.data.data || []); // ✅ Store existing programs
+
+    //     } catch (error) {
+    //         console.error("Error fetching programs:", error);
+    //     } finally {
+    //         setIsLoading(false);
+    //     }
+    // };
     const fetchAllPrograms = async () => {
         setIsLoading(true);
         try {
             const [regularResponse, comboResponse, existingResponse] = await Promise.all([
                 axios.get(`${API_BASE_URL}/getprogramData`),
                 axios.get(`${API_BASE_URL}/getComboPrograms`),
-                axios.get(`${API_BASE_URL}/getExistingPrograms`) // ✅ Fetch Existing Programs
+                axios.get(`${API_BASE_URL}/getExistingPrograms`)
             ]);
 
-            setPrograms(regularResponse.data.data || []);
-            setComboPrograms(comboResponse.data.data || []);
-            setExistingPrograms(existingResponse.data.data || []); // ✅ Store existing programs
+            const filterInvalid = (arr) =>
+                (arr || []).filter(p => p && p._id && p.selectProgram && p.startDate);
 
+            setPrograms(filterInvalid(regularResponse.data.data));
+            setComboPrograms(filterInvalid(comboResponse.data.data));
+            setExistingPrograms(filterInvalid(existingResponse.data.data));
         } catch (error) {
             console.error("Error fetching programs:", error);
         } finally {
@@ -136,64 +157,66 @@ const ProgramList = () => {
             {!isLoading && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-16 shadow-lg ml-[20px]">
                     {allPrograms.length > 0 ? (
-                        allPrograms.map((program) => (
-                            <div
-                                key={program._id}
-                                className="relative bg-white rounded-lg shadow-lg overflow-hidden flex flex-col w-96 md:w-[500px]"
-                            >
-                                {/* Program Image */}
-                                <img
-                                    src={program.Photo}
-                                    alt={program.selectProgram}
-                                    className="w-full h-48 object-cover"
-                                    onError={(e) => {
-                                        // e.target.src = '/default-program.jpg';
-                                    }}
-                                />
-                                <div className="absolute text-[8px] top-3 left-3 bg-[#FDF7C4] text-[#361A06] font-bold md:text-[16px] px-3 py-1 rounded-full">
+                        allPrograms.map((program) => {
+                            if (!program._id || !program.selectProgram) return null; // 🚫 Skip invalid
+                            return (
+                                <div key={program._id}
+                                    className="relative bg-white rounded-lg shadow-lg overflow-hidden flex flex-col w-96 md:w-[500px]"
+                                >
+                                    {/* Program Image */}
+                                    <img
+                                        src={program.Photo}
+                                        alt={program.selectProgram}
+                                        className="w-full h-48 object-cover"
+                                        onError={(e) => {
+                                            // e.target.src = '/default-program.jpg';
+                                        }}
+                                    />
+                                    <div className="absolute text-[8px] top-3 left-3 bg-[#FDF7C4] text-[#361A06] font-bold md:text-[16px] px-3 py-1 rounded-full">
 
-                                    {formatDate(program.startDate)} -  {formatDate(program.endDate)}
-                                </div>
-
-                                {/* Combo Badge */}
-                                {program.type === 'combo' && (
-                                    <div className="absolute top-3 right-3 bg-[#FD8531] text-white text-sm px-3 py-1 rounded-full">
-                                        COMBO
+                                        {formatDate(program.startDate)} -  {formatDate(program.endDate)}
                                     </div>
-                                )}
-                                {/* Program Details */}
-                                <div className="px-6 py-2 flex-1 font-jakarta">
-                                    <h2 className="text-[#361A06] font-extrabold text-[20px] md:text-[40px]">
-                                        {program.selectProgram}
-                                    </h2>
-                                    {/* Include Date in Description */}
-                                    {/* <p className="text-[#361A06] font-semibold text-[12px] md:text-[18px] mt-2">
+
+                                    {/* Combo Badge */}
+                                    {program.type === 'combo' && (
+                                        <div className="absolute top-3 right-3 bg-[#FD8531] text-white text-sm px-3 py-1 rounded-full">
+                                            COMBO
+                                        </div>
+                                    )}
+                                    {/* Program Details */}
+                                    <div className="px-6 py-2 flex-1 font-jakarta">
+                                        <h2 className="text-[#361A06] font-extrabold text-[20px] md:text-[40px]">
+                                            {program.selectProgram}
+                                        </h2>
+                                        {/* Include Date in Description */}
+                                        {/* <p className="text-[#361A06] font-semibold text-[12px] md:text-[18px] mt-2">
                                         Date: {program.date}
                                     </p> */}
-                                    <p className="text-[#361A06] font-semibold text-[12px] md:text-[18px] mt-2">
-                                        {program.Description}
-                                    </p>
-                                    {/* Action Buttons */}
-                                    <div className="mt-4 space-y-2">
-                                        <button
-                                            className="bg-white border border-[#361A0633] shadow-2xl w-full py-2 rounded-lg text-[#361A06] hover:bg-gray-50 transition-colors"
-                                            onClick={() => navigate(
-                                                program.type === 'combo' ? `/ComboProgram/${program._id}` : `/Program/${program._id}`,
-                                                { state: { programData: program } } // Pass program data as state
-                                            )}
-                                        >
-                                            Edit Program
-                                        </button>
-                                        <button
-                                            className="bg-[#361A06] text-white w-full py-2 rounded-lg hover:bg-[#2a1404] transition-colors"
-                                            onClick={() => handleDelete(program._id, program.type === 'combo')}
-                                        >
-                                            Delete Program
-                                        </button>
+                                        <p className="text-[#361A06] font-semibold text-[12px] md:text-[18px] mt-2">
+                                            {program.Description}
+                                        </p>
+                                        {/* Action Buttons */}
+                                        <div className="mt-4 space-y-2">
+                                            <button
+                                                className="bg-white border border-[#361A0633] shadow-2xl w-full py-2 rounded-lg text-[#361A06] hover:bg-gray-50 transition-colors"
+                                                onClick={() => navigate(
+                                                    program.type === 'combo' ? `/ComboProgram/${program._id}` : `/Program/${program._id}`,
+                                                    { state: { programData: program } } // Pass program data as state
+                                                )}
+                                            >
+                                                Edit Program
+                                            </button>
+                                            <button
+                                                className="bg-[#361A06] text-white w-full py-2 rounded-lg hover:bg-[#2a1404] transition-colors"
+                                                onClick={() => handleDelete(program._id, program.type === 'combo')}
+                                            >
+                                                Delete Program
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))
+                            );
+                        })
                     ) : (
                         <div className="col-span-full text-center py-10">
                             <p className="text-gray-500 mb-4">No programs available.</p>

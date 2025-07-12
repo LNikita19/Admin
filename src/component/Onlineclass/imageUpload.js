@@ -151,12 +151,14 @@ const ImageUpload = ({
     }
 
     const reader = new FileReader();
-    reader.onloadend = async () => {
-      setImage(reader.result);
-      reader.onloadend = () => {
-        setImage(reader.result); // ✅ Only update the preview
-      };
+    reader.onloadend = () => {
+      if (reader.result) {
+        setImage(reader.result);
+      } else {
+        toast.error("Failed to load image");
+      }
     };
+
     reader.readAsDataURL(file);
   };
 
