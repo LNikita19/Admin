@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ setIsLoggedIn }) => {
   const [activeItem, setActiveItem] = useState("");
   const navigate = useNavigate();
 
@@ -16,10 +16,10 @@ const Navbar = () => {
   ];
 
   const handleLogout = () => {
-    localStorage.removeItem("token"); // Clear token
-    navigate("/login"); // Redirect to login page
+    localStorage.removeItem("token");
+    setIsLoggedIn(false); // 👈 Fix
+    navigate("/login");
   };
-
   return (
     <div className="bg-[#FCEC8C] font-jakarta font-bold bg-cover w-auto text-center text-[#361A06] min-h-screen flex flex-col justify-between">
       <div>

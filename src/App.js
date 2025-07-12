@@ -41,7 +41,7 @@ function App() {
       <Router>
         <ToastContainer position="bottom-right" />
         <div className="flex w-full bg-[#FFF9E1]">
-          {isLoggedIn && <Navbar />} {/* ✅ Show Navbar only when logged in */}
+          {isLoggedIn && <Navbar setIsLoggedIn={setIsLoggedIn} />}
           <div className="flex-grow">
             <Routes>
               {/* Redirect "/" to Login or Home based on auth */}

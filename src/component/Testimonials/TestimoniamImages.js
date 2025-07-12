@@ -38,11 +38,19 @@ const TestimonialImages = () => {
         setSelectedImage(null); // Reset selected image when closing modal
     };
 
-    const handleRemoveImage = (index) => {
-        const updatedImages = [...uploadedImages];
-        updatedImages.splice(index, 1);
-        setUploadedImages(updatedImages);
+    const handleRemoveImage = async (imageId) => {
+        if (!window.confirm("Are you sure you want to delete this image?")) return;
+
+        try {
+            await axios.delete(`${API_BASE_URL}/DeleteByImageDataId/${imageId}`);
+            setUploadedImages(prev => prev.filter(img => img._id !== imageId));
+            toast.success("Image deleted successfully");
+        } catch (err) {
+            console.error("Error deleting image:", err);
+            toast.error("Failed to delete image");
+        }
     };
+
 
     const handleImageUpload = async () => {
         if (!selectedImage) {
@@ -95,7 +103,7 @@ const TestimonialImages = () => {
                             className="absolute top-1 right-1 bg-red-600 text-white w-5 h-5 rounded-full flex items-center justify-center text-xs"
                             onClick={(e) => {
                                 e.stopPropagation();
-                                handleRemoveImage(index);
+                                handleRemoveImage(image._id); // ✅ pass actual image ID to delete from backend
                             }}
                             title="Remove Image"
                         >
