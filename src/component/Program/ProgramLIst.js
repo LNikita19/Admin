@@ -57,35 +57,35 @@ const ProgramList = () => {
                 axios.get(`${API_BASE_URL}/getExistingPrograms`)
             ]);
 
-            // Verify response structure before setting state
-            const safeData = (response) => (response.data && Array.isArray(response.data.data))
-                ? response.data.data
-                : [];
+            const filterInvalid = (arr) =>
+                (arr || []).filter(p => p && p._id && p.selectProgram && p.startDate);
 
-            setPrograms(safeData(regularResponse).filter(p => p && !p.isDeleted));
-            setComboPrograms(safeData(comboResponse).filter(p => p && !p.isDeleted));
-            setExistingPrograms(safeData(existingResponse).filter(p => p && !p.isDeleted));
+            setPrograms(filterInvalid(regularResponse.data.data));
+            setComboPrograms(filterInvalid(comboResponse.data.data));
+            setExistingPrograms(filterInvalid(existingResponse.data.data));
         } catch (error) {
             console.error("Error fetching programs:", error);
-            // Reset to empty arrays on error
-            setPrograms([]);
-            setComboPrograms([]);
-            setExistingPrograms([]);
         } finally {
             setIsLoading(false);
         }
     };
+
     // Delete program by ID
     const handleDelete = async (id, isCombo = false) => {
         if (window.confirm("Are you sure you want to delete this program?")) {
             try {
                 await axios.delete(`${API_BASE_URL}/${isCombo ? 'DeletecomboprogramById' : 'DeleteprogramById'}/${id}`);
-                fetchAllPrograms(); // Refresh the list after deletion
+                if (isCombo) {
+                    setComboPrograms(prev => prev.filter(program => program._id !== id));
+                } else {
+                    setPrograms(prev => prev.filter(program => program._id !== id));
+                }
             } catch (error) {
                 console.error("Error deleting program:", error);
             }
         }
     };
+
     // Navigate to selected program page
     const handleProgramSelect = (type) => {
         setShowPopup(false);
@@ -96,9 +96,8 @@ const ProgramList = () => {
     const allPrograms = [
         ...programs.map(p => ({ ...p, type: 'regular' })),
         ...comboPrograms.map(p => ({ ...p, type: 'combo' })),
-        ...existingPrograms.map(p => ({ ...p, type: 'existing' }))
-    ].filter(p => p && p._id && !p.isDeleted); // Additional safety checks
-
+        ...existingPrograms.map(p => ({ ...p, type: 'existing' })) // ✅ Include existing programs
+    ];
     return (
         <div className="p-8 ml-[90px] mt-[5rem] font-jakarta w-[900px] h-auto lg:w-[1200px] rounded-3xl bg-white shadow-lg border border-[#361A0633]">
             {/* Header */}
