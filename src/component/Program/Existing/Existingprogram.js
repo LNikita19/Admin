@@ -97,8 +97,8 @@ const Existingprogram = () => {
             }
 
             if (response?.data?.status) {
-                toast.success(id ? "Class Updated Successfully" : "Class Saved Successfully");
-                navigate("/ClassList");
+                toast.success(id ? "Existing Program Updated Successfully" : " Existing Program Saved Successfully");
+                navigate("/ProgramList");
             }
         } catch (error) {
             console.error("Error saving class:", error);

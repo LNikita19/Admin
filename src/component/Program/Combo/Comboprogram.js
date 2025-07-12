@@ -155,7 +155,7 @@ const ComboProgram = () => {
             }
 
             if (response?.data?.status) {
-                toast.success(id ? "Class Updated Successfully" : "Class Saved Successfully");
+                toast.success(id ? "combo program Updated Successfully" : "combo program Saved Successfully");
                 navigate("/ProgramList");
             }
         } catch (error) {

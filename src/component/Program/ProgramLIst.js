@@ -71,12 +71,26 @@ const ProgramList = () => {
     };
 
     // Delete program by ID
-    const handleDelete = async (id, isCombo = false) => {
+    const handleDelete = async (id, type = "regular") => {
         if (window.confirm("Are you sure you want to delete this program?")) {
             try {
-                await axios.delete(`${API_BASE_URL}/${isCombo ? 'DeletecomboprogramById' : 'DeleteprogramById'}/${id}`);
-                if (isCombo) {
+                let endpoint = "";
+
+                if (type === "combo") {
+                    endpoint = `deleteComboProgram/${id}`;
+                } else if (type === "existing") {
+                    endpoint = `deleteExistingProgram/${id}`;
+                } else {
+                    endpoint = `DeleteprogramById/${id}`;
+                }
+
+                await axios.delete(`${API_BASE_URL}/${endpoint}`);
+
+                // Update UI state after deletion
+                if (type === "combo") {
                     setComboPrograms(prev => prev.filter(program => program._id !== id));
+                } else if (type === "existing") {
+                    setExistingPrograms(prev => prev.filter(program => program._id !== id));
                 } else {
                     setPrograms(prev => prev.filter(program => program._id !== id));
                 }
@@ -206,12 +220,21 @@ const ProgramList = () => {
                                             >
                                                 Edit Program
                                             </button>
-                                            <button
+                                            {/* <button
                                                 className="bg-[#361A06] text-white w-full py-2 rounded-lg hover:bg-[#2a1404] transition-colors"
                                                 onClick={() => handleDelete(program._id, program.type === 'combo')}
                                             >
                                                 Delete Program
+                                            </button> */}
+
+                                            <button
+                                                className="bg-[#361A06] text-white w-full py-2 rounded-lg hover:bg-[#2a1404] transition-colors"
+                                                onClick={() => handleDelete(program._id, program.type || "regular")}
+                                            >
+                                                Delete
                                             </button>
+
+
                                         </div>
                                     </div>
                                 </div>
